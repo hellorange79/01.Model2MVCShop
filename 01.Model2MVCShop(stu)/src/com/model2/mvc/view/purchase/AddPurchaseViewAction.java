@@ -17,15 +17,17 @@ public class AddPurchaseViewAction extends Action{
 	
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws Exception{
-		
+		//세션 생성
 		HttpSession session=request.getSession();
 		
 		//session에 있는 userId 가져오기
-		int prodNo = Integer.parseInt(request.getParameter("prodNo"));
 		String userId = ((User)session.getAttribute("user")).getUserId();
-		
-		System.out.println(prodNo+"<=== prodNo ");
 		System.out.println(userId+"<=== userId ");
+		
+		//request로 prodNo가져오기
+		int prodNo = Integer.parseInt(request.getParameter("prodNo"));
+		System.out.println(prodNo+"<=== prodNo ");
+		
 		
 		//상품번호로 상품정보 가져오기
 		ProductService productservice = new ProductServiceImpl();
@@ -38,10 +40,12 @@ public class AddPurchaseViewAction extends Action{
 		
 		
 		request.setAttribute("prouctVO", productVO);
+		System.out.println(productVO+"<==productVO");
 		request.setAttribute("prodNo", prodNo);
-		session.getAttribute("user", userId);
 		
-		return "forward:/purchase/addPurchaseAction.jsp?prodNo ="+prodNo;
+		
+		
+		return "forward:/purchase/addPurchaseViewAction.jsp?prodNo ="+prodNo;
 		
 	}
 	
