@@ -39,9 +39,9 @@ public class AddPurchaseViewAction extends Action{
 		
 		
 		
-		request.setAttribute("prouctVO", productVO);
+		//request.setAttribute("prodNo", prodNo);
+		request.setAttribute("productVO", productVO);
 		System.out.println(productVO+"<==productVO");
-		request.setAttribute("prodNo", prodNo);
 		
 		
 		

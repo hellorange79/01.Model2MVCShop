@@ -27,10 +27,10 @@ public class PurchaseDAO {
 				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'))";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
+		System.out.println("PurchaseDAO ::"+sql);
 		
-		
-		User user = new User();
-		stmt.setString(1, user.getUserId());
+	
+		stmt.setString(1, purchaseVO.getBuyer().getUserId());
 		stmt.setString(2, purchaseVO.getPaymentOption());
 		stmt.setString(3, purchaseVO.getReceiverName());
 		stmt.setString(4, purchaseVO.getReceiverPhone());

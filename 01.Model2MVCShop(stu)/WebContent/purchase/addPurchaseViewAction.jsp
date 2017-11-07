@@ -8,9 +8,7 @@
 
 <% 
 	ProductVO productVO = (ProductVO)request.getAttribute("productVO"); 
-    PurchaseVO purchaseVO = (PurchaseVO)request.getAttribute("purchaseVO");
-	User user=(User)request.getAttribute("user");
-	
+   
 	String userId=((User)session.getAttribute("user")).getUserId();
 	int prodNo= Integer.parseInt(request.getParameter("prodNo"));
 	
@@ -24,7 +22,7 @@
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<title>구매상품상세정보</title>
+<title>구매요청화면</title>
 
 <script type="text/javascript" src="../javascript/calendar.js">
 </script>
@@ -61,7 +59,7 @@ function fncAddPurchase() {
 	</tr>
 </table>
 
-<input type="hidden" name="prodNo" value="" />
+<input type="hidden" name="prodNo" value="<%=prodNo %>" />
 
 <table width="600" border="0" cellspacing="0" cellpadding="0"	align="center" style="margin-top: 13px;">
 	<tr>
@@ -75,7 +73,7 @@ function fncAddPurchase() {
 		<td class="ct_write01" width="299">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="105"><%=productVO.getProdNo() %></td>
+					<td width="105"><%=prodNo %></td>
 				</tr>
 			</table>
 		</td>
@@ -106,7 +104,7 @@ function fncAddPurchase() {
 	<tr>
 		<td width="104" class="ct_write">제조일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=productVO.getManuDate() %></td>
+		<td class="ct_write01"><%=productVO.getManuDate()%></td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -132,7 +130,7 @@ function fncAddPurchase() {
 			구매자아이디 <img 	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=user.getUserId() %></td>
+		<td class="ct_write01"><%=userId %></td>
 		<input type="hidden" name="userId" value=""/>
 	</tr>
 	<tr>

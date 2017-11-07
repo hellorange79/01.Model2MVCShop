@@ -9,6 +9,7 @@
 	ProductVO productVO=(ProductVO)request.getAttribute("productVO");
 	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 	
+	
 
 %>
 
@@ -19,7 +20,7 @@
 
 <body>
 
-<form name="updatePurchase" action="/updatePurchaseView.do?tranNo=0" method="post">
+<form name="updatePurchase" action="/updatePurchaseView.do?" method="post">
 
 다음과 같이 구매가 되었습니다.
 
@@ -31,7 +32,7 @@
 	</tr>
 	<tr>
 		<td>구매자아이디</td>
-		<td><%=purchaseVO.getBuyer() %></td>
+		<td><%=purchaseVO.getBuyer().getUserId() %></td>
 		<td></td>
 	</tr>
 	<tr>
