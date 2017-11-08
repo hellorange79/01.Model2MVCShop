@@ -12,12 +12,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private PurchaseDAO purchaseDAO;
 	
 	public PurchaseServiceImpl() {
-		
+		purchaseDAO = new PurchaseDAO();
 	}
 	
 	//±¸¸Å
 	public void addPurchase(PurchaseVO purchaseVO)throws Exception{
-		purchaseDAO = new PurchaseDAO();
+		purchaseDAO.insertPurchase(purchaseVO);
+		
 	}
 
 	@Override

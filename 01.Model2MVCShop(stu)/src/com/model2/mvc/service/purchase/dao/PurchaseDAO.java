@@ -1,3 +1,4 @@
+
 package com.model2.mvc.service.purchase.dao;
 
 import java.sql.Connection;
@@ -11,7 +12,7 @@ public class PurchaseDAO {
 
 	// 디폴트 생성자
 	public PurchaseDAO() {
-
+		
 	}
 
 	//
@@ -23,20 +24,24 @@ public class PurchaseDAO {
 				+ " (tran_no, prod_no, buyer_id, payment_option, "
 				+ " receiver_name, receiver_phone, dlvy_addr,"
 				+ " dlvy_request, dlvy_date) "+ 
-				"VALUES(seq_transaction_tran_no.nextval,seq_product_prod_no.nextval,"
+				"VALUES(seq_transaction_tran_no.nextval,?,"
 				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'))";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		System.out.println("PurchaseDAO ::"+sql);
 		
-	
-		stmt.setString(1, purchaseVO.getBuyer().getUserId());
-		stmt.setString(2, purchaseVO.getPaymentOption());
-		stmt.setString(3, purchaseVO.getReceiverName());
-		stmt.setString(4, purchaseVO.getReceiverPhone());
-		stmt.setString(5, purchaseVO.getDivyAddr());
-		stmt.setString(6, purchaseVO.getDivyRequest());
-		stmt.setString(7, purchaseVO.getDivyDate());
+		//tran_no 시퀀스로 받아옴
+		
+		stmt.setString(2, purchaseVO.getBuyer().getUserId());//
+		System.out.println("난 아이디"+ purchaseVO.getBuyer().getUserId());
+		stmt.setInt(1, purchaseVO.getPurchaseProd().getProdNo());
+		System.out.println("난 넘버"+purchaseVO.getPurchaseProd().getProdNo());
+		stmt.setString(3, purchaseVO.getPaymentOption());
+		stmt.setString(4, purchaseVO.getReceiverName());
+		stmt.setString(5, purchaseVO.getReceiverPhone());
+		stmt.setString(6, purchaseVO.getDivyAddr());
+		stmt.setString(7, purchaseVO.getDivyRequest());
+		stmt.setString(8, purchaseVO.getDivyDate());
 		stmt.executeQuery();
 		
 		con.close();

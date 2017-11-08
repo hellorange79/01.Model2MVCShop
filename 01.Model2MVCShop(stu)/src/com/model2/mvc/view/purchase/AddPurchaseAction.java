@@ -27,10 +27,15 @@ public class AddPurchaseAction extends Action {
 		// user정보 받아오기
 		UserService userService = new UserServiceImpl();
 		User user = userService.getUser(userId);
+		
+		ProductService productservice = new ProductServiceImpl();
+		ProductVO productVO = productservice.getProduct(prodNo);
 
 		PurchaseVO purchaseVO = new PurchaseVO();
 		
 		purchaseVO.setBuyer(((User) session.getAttribute("user")));
+		//purchaseVO.setPurchaseProd((ProductVO)request.getAttribute("prodNo"));
+		purchaseVO.setPurchaseProd(productVO);
 		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));
 		purchaseVO.setReceiverPhone(request.getParameter("receiverPhone"));
@@ -43,9 +48,7 @@ public class AddPurchaseAction extends Action {
 		PurchaseService service = new PurchaseServiceImpl();
 		service.addPurchase(purchaseVO);
 
-		ProductService productservice = new ProductServiceImpl();
-		ProductVO productVO = productservice.getProduct(prodNo);
-
+		
 		request.setAttribute("productVO", productVO);
 		request.setAttribute("prodNo", prodNo);
 		request.setAttribute("purchaseVO", purchaseVO);
