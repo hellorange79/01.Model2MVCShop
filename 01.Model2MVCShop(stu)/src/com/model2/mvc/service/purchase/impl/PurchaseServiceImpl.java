@@ -22,14 +22,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public PurchaseVO getPurchase(int tranNo) throws Exception {
+	public PurchaseVO getPurchase2(int tranNo) throws Exception {
 		
 		
 		return null;
 	}
 
 	@Override
-	public PurchaseVO getPurchase2(int ProdNo) throws Exception {
+	public PurchaseVO getPurchase(int ProdNo) throws Exception {
 		
 		
 		return null;
