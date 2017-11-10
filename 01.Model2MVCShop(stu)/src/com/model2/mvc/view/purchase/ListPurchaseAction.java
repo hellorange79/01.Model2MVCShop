@@ -14,7 +14,8 @@ import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
 
 public class ListPurchaseAction extends Action {
 
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String execute(HttpServletRequest request, HttpServletResponse response) 
+			throws Exception {
 
 		Search search = new Search();
 

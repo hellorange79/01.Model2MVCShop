@@ -74,18 +74,18 @@ public class PurchaseDAO {
 		stmt.setInt(1, prodNo);
 
 		ResultSet rs = stmt.executeQuery();
-
+		
 		ProductService productService = new ProductServiceImpl();
 		ProductVO productVO = productService.getProduct(prodNo);
 
 		UserService userservice = new UserServiceImpl();
 		
-
+		
 		PurchaseVO purchaseVO = new PurchaseVO();
 
 		while (rs.next()) {
-			
-			purchaseVO.setPurchaseProd(productVO);
+		
+			purchaseVO.setPurchaseProd(productService.getProduct(rs.getInt("prod_No")));
 			purchaseVO.setBuyer(userservice.getUser(rs.getString("buyer_id")));
 			purchaseVO.setPaymentOption(rs.getString("paymentOption"));
 			purchaseVO.setReceiverName(rs.getString("receiverName"));

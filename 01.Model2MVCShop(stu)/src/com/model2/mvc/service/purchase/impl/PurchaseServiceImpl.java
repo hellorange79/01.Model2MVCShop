@@ -32,7 +32,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public PurchaseVO getPurchase(int ProdNo) throws Exception {
 		
 		
-		return null;
+		return purchaseDAO.getPurcahse(ProdNo);
 	}
 
 	@Override
