@@ -73,26 +73,28 @@
 						PurchaseVO vo = (PurchaseVO)list.get(i);
 						%>		
 				<tr class="ct_list_pop">
-					<td align="center"><a href="/getPurchase.do?tranNo=<%= vo.getTranNo()%>"><%=i+1%></a></td>
-					<td></td>
-					<td align="left">
-					</td>
-					<td></td>
-	<tr class="ct_list_pop">
-		<td align="center"></td>
+		<td align="center">
+			<a href="/getPurchase.do?tranNo=<%=vo.getTranNo()%>"><%=i+1 %></a></td>
 		<td></td>
-		<td align="left"><a href="/getUser.do?userId=<%= vo.getBuyer().getUserId()%>"><%= vo.getBuyer().getUserId()%></a>
+		<td align="left">
+			<a href="/getUser.do?userId=<%=vo.getBuyer().getUserId()%>"><%=vo.getBuyer().getUserId() %></a>
 		</td>
 		<td></td>
-		<td align="left"> <%=vo.getReceiverName() %> </td>
+		<td align="left"><%=vo.getReceiverName() %></td>
 		<td></td>
 		<td align="left"><%=vo.getReceiverPhone() %></td>
 		<td></td>
-		<td align="left"></td>
+		<td align="left">현재
+				
+					구매완료
+				상태 입니다.</td>
 		<td></td>
 		<td align="left">
 			
 		</td>
+	</tr>
+	<tr>
+		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
 	</tr>
 	
 	<%} %>
