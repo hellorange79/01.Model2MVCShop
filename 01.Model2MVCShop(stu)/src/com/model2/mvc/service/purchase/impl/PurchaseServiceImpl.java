@@ -38,7 +38,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public HashMap<String, Object> getPurchaseList(Search search, String buyerId) throws Exception {
 		
-		return null;
+		return (HashMap<String, Object>)purchaseDAO.getPurchaseList(search, buyerId);
 	}
 
 	@Override

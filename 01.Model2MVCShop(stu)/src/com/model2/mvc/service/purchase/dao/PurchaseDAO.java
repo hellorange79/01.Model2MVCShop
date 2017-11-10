@@ -101,28 +101,18 @@ public class PurchaseDAO {
 
 		return purchaseVO;
 	}// end of getPurchase
+	
+	
+	//구매목록 조회 No, 회원ID, 회원명, 전화번호, 배송현황, 정보수정
+	public HashMap<String, Object> getPurchaseList(Search search, String buyerId) throws Exception {
 
-	public Map<String, Object> getPurchaseList(Search search, String buyerId) throws Exception {
-
-		Map<String, Object> map = new HashMap<String, Object>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 
 		Connection con = DBUtil.getConnection();
 		
 		
-		String sql="select tran_no, receiver_name, receiver_phone, tran_status_code from transaction ";
+		String sql="select  tran_no, prod_no, buyer_id, receiver_name, receiver_phone  from transaction ";
 		
-		//상품검색
-		if (search.getSearchCondition() != null) {
-			if (search.getSearchCondition().equals("0") && !search.getSearchKeyword().equals("")) {
-				sql += " WHERE Prod_No LIKE '%" + search.getSearchKeyword() + "%'";
-			} else if (search.getSearchCondition().equals("1") && !search.getSearchKeyword().equals("")) {
-				sql += " WHERE receiver_name LIKE '%" + search.getSearchKeyword() + "%'";
-			} else if(search.getSearchCondition().equals("2") && !search.getSearchKeyword().equals("")){
-				sql +=" WHERE tran_no LIKE '%"+search.getSearchKeyword() +"%'";
-			}
-		}
-		sql += " ORDER BY prod_NO";
-		System.out.println("PurchaseDAO :: SQL  : "+sql);
 		
 		//전체 게시물수 
 		int totalCount= this.getTotalCount(sql);
@@ -143,12 +133,13 @@ public class PurchaseDAO {
 		while(rs.next()) {
 			PurchaseVO purchaseVO= new PurchaseVO();
 			
-			purchaseVO.setPurchaseProd(productservice.getProduct(rs.getInt("prodNo")));
-			purchaseVO.setBuyer(userservice.getUser(rs.getString("buyer_id")));
-			purchaseVO.setReceiverName(rs.getString("receiverName"));
-			purchaseVO.setReceiverPhone(rs.getString("receiverPhone"));
+			purchaseVO.setTranNo(rs.getInt("tran_No"));
+			purchaseVO.setPurchaseProd(productservice.getProduct(rs.getInt("prod_No")));
+			purchaseVO.setBuyer(userservice.getUser(rs.getString("buyer_Id")));
+			purchaseVO.setReceiverName(rs.getString("receiver_name"));
+			purchaseVO.setReceiverPhone(rs.getString("receiver_phone"));
 			list.add(purchaseVO);
-			
+			System.out.println("purchaseVO==>"+purchaseVO);
 		}
 		map.put("list", list);
 		map.put("totalCount", totalCount);
