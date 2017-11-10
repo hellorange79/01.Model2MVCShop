@@ -7,7 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 
-	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
+
 	List<PurchaseVO> list=(List<PurchaseVO>)request.getAttribute("list");
 	Page resultPage=(Page)request.getAttribute("resultPage");
 	
@@ -73,23 +73,20 @@
 						PurchaseVO vo = (PurchaseVO)list.get(i);
 						%>		
 				<tr class="ct_list_pop">
-					<td align="center"><%=i+1%></td>
+					<td align="center"><a href="/getPurchase.do?tranNo=<%= vo.getTranNo()%>"><%=i+1%></a></td>
 					<td></td>
 					<td align="left">
-							
-	
+					</td>
+					<td></td>
 	<tr class="ct_list_pop">
-		<td align="center">
-			<a href="/getPurchase.do?tranNo=<%= purchaseVO.getTranNo()%>"><%= purchaseVO.getTranNo()%></a>
+		<td align="center"></td>
+		<td></td>
+		<td align="left"><a href="/getUser.do?userId=<%= vo.getBuyer().getUserId()%>"><%= vo.getBuyer().getUserId()%></a>
 		</td>
 		<td></td>
-		<td align="left">
-			<a href="/getUser.do?userId=<%= purchaseVO.getBuyer().getUserId()%>"><%= purchaseVO.getBuyer().getUserId()%></a>
-		</td>
+		<td align="left"> <%=vo.getReceiverName() %> </td>
 		<td></td>
-		<td align="left"> <%=purchaseVO.getReceiverName() %> </td>
-		<td></td>
-		<td align="left"><%=purchaseVO.getReceiverPhone() %></td>
+		<td align="left"><%=vo.getReceiverPhone() %></td>
 		<td></td>
 		<td align="left"></td>
 		<td></td>
@@ -98,12 +95,13 @@
 		</td>
 	</tr>
 	
-	
+	<%} %>
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px;">
 	<tr>
 		<td align="center">
+		<input type="hidden" id="currentPage" name="currentPage" value=""/>
 		 <%  if( resultPage.getCurrentPage() <= resultPage.getPageUnit() ){ %>
 					◀ 이전
 			<% }else{ %>
@@ -119,7 +117,9 @@
 			<% }else{ %>
 					<a href="javascript:fncgetUserList('<%=resultPage.getEndUnitPage()+1%>')">이후 ▶</a>
 			<% } %>
-			<a href="/listPurchase.do?page=1"></a> 
+	
+			
+		
 		
 		</td>
 	</tr>
