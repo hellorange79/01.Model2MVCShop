@@ -41,13 +41,13 @@ public class PurchaseDAO {
 				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'), sysdate)";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
-		System.out.println("PurchaseDAO ::" + sql);
+		//System.out.println("PurchaseDAO ::" + sql);
 
 		// tran_no 시퀀스로 받아옴
 		stmt.setString(2, purchaseVO.getBuyer().getUserId());//
-		System.out.println("난 아이디" + purchaseVO.getBuyer().getUserId());
+		//System.out.println("난 아이디" + purchaseVO.getBuyer().getUserId());
 		stmt.setInt(1, purchaseVO.getPurchaseProd().getProdNo());
-		System.out.println("난 넘버" + purchaseVO.getPurchaseProd().getProdNo());
+		//System.out.println("난 넘버" + purchaseVO.getPurchaseProd().getProdNo());
 		stmt.setString(3, purchaseVO.getPaymentOption());
 		stmt.setString(4, purchaseVO.getReceiverName());
 		stmt.setString(5, purchaseVO.getReceiverPhone());
@@ -60,15 +60,16 @@ public class PurchaseDAO {
 		con.close();
 
 	}// end of addPurchase
-
+	
 	// 구매상세정보 요청
 	public PurchaseVO getPurcahse(int prodNo) throws Exception {
 
 		Connection con = DBUtil.getConnection();
 
-		String sql = "SELECT prod_no, buyer_id, payment_option, " + 
-		" receiver_name, receiver_phone, dlvy_addr, "
-				+ " dlvy_request, dlvy_date, order_date  where prod_no=? ";
+		String sql = "SELECT PROD_NO, BUYER_ID, PAYMENT_OPTION, " + 
+		" RECEIVER_NAME, RECEIVER_PHONE, DLVY_ADDR, "
+				+ " DLVY_REQUEST, DLVY_DATE, ORDER_DATE "
+				+ " FROM transaction WHERE PROD_NO=? ";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setInt(1, prodNo);
@@ -80,19 +81,18 @@ public class PurchaseDAO {
 
 		UserService userservice = new UserServiceImpl();
 		
-		
 		PurchaseVO purchaseVO = new PurchaseVO();
 
 		while (rs.next()) {
 		
-			purchaseVO.setPurchaseProd(productService.getProduct(rs.getInt("prod_No")));
-			purchaseVO.setBuyer(userservice.getUser(rs.getString("buyer_id")));
-			purchaseVO.setPaymentOption(rs.getString("paymentOption"));
-			purchaseVO.setReceiverName(rs.getString("receiverName"));
-			purchaseVO.setReceiverPhone(rs.getString("receiverPhone"));
-			purchaseVO.setDivyAddr(rs.getString("receiverAddr"));
-			purchaseVO.setDivyRequest(rs.getString("receiverRequest"));
-			purchaseVO.setDivyDate(rs.getString("receiverDate"));
+			purchaseVO.setPurchaseProd(productService.getProduct(rs.getInt("PROD_NO")));
+			purchaseVO.setBuyer(userservice.getUser(rs.getString("BUYER_ID")));
+			purchaseVO.setPaymentOption(rs.getString("PAYMENT_OPTION"));
+			purchaseVO.setReceiverName(rs.getString("RECEIVER_NAME"));
+			purchaseVO.setReceiverPhone(rs.getString("RECEIVER_PHONE"));
+			purchaseVO.setDivyAddr(rs.getString("DLVY_ADDR"));
+			purchaseVO.setDivyRequest(rs.getString("DLVY_REQUEST"));
+			purchaseVO.setDivyDate(rs.getString("DLVY_DATE"));
 
 			System.out.println("PurchaseDAO getPurchase :" + purchaseVO);
 
