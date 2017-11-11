@@ -38,9 +38,11 @@
 	<tr>
 		<td>구매방법</td>
 		<td>
-		
-			<%=purchaseVO.getPaymentOption() %>
-		
+		<%if(purchaseVO.getPaymentOption().equals("1")){ %>
+			현금구매
+		<%}else{ %>
+			신용구매
+			<%} %>
 		</td>
 		<td></td>
 	</tr>

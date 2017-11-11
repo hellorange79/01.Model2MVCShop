@@ -62,18 +62,18 @@ public class PurchaseDAO {
 	}// end of addPurchase
 	
 	// 구매상세정보 요청
-	public PurchaseVO getPurcahse(int prodNo) throws Exception {
+	public PurchaseVO findPurcahse(int prodNo) throws Exception {
 
 		Connection con = DBUtil.getConnection();
 
-		String sql = "SELECT PROD_NO, BUYER_ID, PAYMENT_OPTION, " + 
+		String sql = "SELECT TRAN_NO, PROD_NO, BUYER_ID, PAYMENT_OPTION, " + 
 		" RECEIVER_NAME, RECEIVER_PHONE, DLVY_ADDR, "
 				+ " DLVY_REQUEST, DLVY_DATE, ORDER_DATE "
 				+ " FROM transaction WHERE PROD_NO=? ";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		stmt.setInt(1, prodNo);
-
+		
 		ResultSet rs = stmt.executeQuery();
 		
 		ProductService productService = new ProductServiceImpl();
@@ -81,10 +81,52 @@ public class PurchaseDAO {
 
 		UserService userservice = new UserServiceImpl();
 		
+		
 		PurchaseVO purchaseVO = new PurchaseVO();
 
 		while (rs.next()) {
+			purchaseVO.setTranNo(rs.getInt("tran_no"));
+			purchaseVO.setPurchaseProd(productService.getProduct(rs.getInt("PROD_NO")));
+			purchaseVO.setBuyer(userservice.getUser(rs.getString("BUYER_ID")));
+			purchaseVO.setPaymentOption(rs.getString("PAYMENT_OPTION"));
+			purchaseVO.setReceiverName(rs.getString("RECEIVER_NAME"));
+			purchaseVO.setReceiverPhone(rs.getString("RECEIVER_PHONE"));
+			purchaseVO.setDivyAddr(rs.getString("DLVY_ADDR"));
+			purchaseVO.setDivyRequest(rs.getString("DLVY_REQUEST"));
+			purchaseVO.setDivyDate(rs.getString("DLVY_DATE"));
+
+			System.out.println("PurchaseDAO getPurchase :" + purchaseVO);
+
+		}
+		con.close();
+
+		return purchaseVO;
+	}// end of getPurchase
+	
+	public PurchaseVO findPurcahse2(int tranNo) throws Exception {
+
+		Connection con = DBUtil.getConnection();
+
+		String sql = "SELECT TRAN_NO, PROD_NO, BUYER_ID, PAYMENT_OPTION, " + 
+		" RECEIVER_NAME, RECEIVER_PHONE, DLVY_ADDR, "
+				+ " DLVY_REQUEST, DLVY_DATE, ORDER_DATE "
+				+ " FROM transaction WHERE TRAN_NO=? ";
+
+		PreparedStatement stmt = con.prepareStatement(sql);
+		stmt.setInt(1, tranNo);
 		
+		ResultSet rs = stmt.executeQuery();
+		
+		ProductService productService = new ProductServiceImpl();
+		
+
+		UserService userservice = new UserServiceImpl();
+		
+		
+		PurchaseVO purchaseVO = new PurchaseVO();
+
+		while (rs.next()) {
+			purchaseVO.setTranNo(rs.getInt("TRAN_NO"));
 			purchaseVO.setPurchaseProd(productService.getProduct(rs.getInt("PROD_NO")));
 			purchaseVO.setBuyer(userservice.getUser(rs.getString("BUYER_ID")));
 			purchaseVO.setPaymentOption(rs.getString("PAYMENT_OPTION"));

@@ -74,7 +74,7 @@
 						%>		
 				<tr class="ct_list_pop">
 		<td align="center">
-			<a href="/getPurchase.do?prodNo=<%=vo.getPurchaseProd().getProdNo()%>"><%=i+1 %></a></td>
+			<a href="/getPurchase.do?tranNo=<%=vo.getTranNo()%>"><%=i+1 %></a></td>
 		<td></td>
 		<td align="left">
 			<a href="/getUser.do?userId=<%=vo.getBuyer().getUserId()%>"><%=vo.getBuyer().getUserId() %></a>

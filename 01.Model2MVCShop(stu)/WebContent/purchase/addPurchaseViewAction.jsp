@@ -142,7 +142,7 @@ function fncAddPurchase() {
 		<td class="ct_write01">
 			<select 	name="paymentOption"		class="ct_input_g" 
 							style="width: 100px; height: 19px" maxLength="20">
-				<option value="1">현금구매</option>
+				<option value="1" selected>현금구매</option>
 				<option value="2">신용구매</option>
 			</select>
 		</td>

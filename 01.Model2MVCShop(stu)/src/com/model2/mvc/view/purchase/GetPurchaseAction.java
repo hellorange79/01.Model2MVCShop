@@ -16,17 +16,15 @@ public class GetPurchaseAction extends Action{
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response)throws Exception{
 		
-		int prodNo =Integer.parseInt(request.getParameter("prodNo"));
+		int tranNo =Integer.parseInt(request.getParameter("tranNo"));
 		
-		ProductService productService=new ProductServiceImpl();
-		ProductVO productVO=productService.getProduct(prodNo);
 		
 		PurchaseService purchaseService=new PurchaseServiceImpl();
-		PurchaseVO purchaseVO= purchaseService.getPurchase(prodNo);
-		
+		PurchaseVO purchaseVO= purchaseService.getPurchase2(tranNo);
+		System.out.println("나는 무야:"+purchaseVO);
 		request.setAttribute("purchaseVO", purchaseVO);
 		
-		return "forward:/purchase/getPurchase.jsp?=prodNo="+prodNo;
+		return "forward:/purchase/getPurchase.jsp?tranNo="+tranNo;
 		
 	}
 
