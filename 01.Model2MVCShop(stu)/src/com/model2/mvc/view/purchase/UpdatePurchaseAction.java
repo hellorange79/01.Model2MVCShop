@@ -19,6 +19,7 @@ public class UpdatePurchaseAction extends Action {
 	
 	public String execute(HttpServletRequest request, 
 			HttpServletResponse response) throws Exception{
+		
 		HttpSession session = request.getSession();
 		
 		String userId = ((User) session.getAttribute("user")).getUserId();
@@ -43,6 +44,7 @@ public class UpdatePurchaseAction extends Action {
 		
 		PurchaseService purchaseService=new PurchaseServiceImpl();
 		purchaseService.updatePurcahse(purchaseVO);
+		
 		
 		request.setAttribute("purchaseVO", purchaseVO);
 		

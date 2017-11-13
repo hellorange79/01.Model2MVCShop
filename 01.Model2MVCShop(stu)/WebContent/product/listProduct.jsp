@@ -55,7 +55,9 @@ function fncGetUserList(currentPage) {
 						style="padding-left: 10px;">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td width="93%" class="ct_ttl01">惑前 包府</td>
+								<td width="93%" class="ct_ttl01">
+								<c:if test="${param.menu eq 'manage'}" > 惑前包府炼雀</td></c:if>
+								<c:if test="${param.menu eq 'search'}"> 惑前格废炼雀 </td></c:if>
 							</tr>
 						</table>
 					</td>
