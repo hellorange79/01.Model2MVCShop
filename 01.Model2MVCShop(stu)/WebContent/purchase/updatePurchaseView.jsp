@@ -14,6 +14,8 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 <title>구매정보 수정</title>
 
 <script type="text/javascript" src="../javascript/calendar.js">
+
+
 </script>
 
 </head>
@@ -74,7 +76,7 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverName" 	class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="SCOTT" />
+							maxLength="20" value="<%=purchaseVO.getReceiverName() %>" />
 		</td>
 	</tr>
 	<tr>
@@ -85,7 +87,7 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverPhone" class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="010-1234-4567" />
+							maxLength="20" value="<%=purchaseVO.getReceiverPhone() %>" />
 		</td>
 	</tr>
 
@@ -96,8 +98,8 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 		<td width="104" class="ct_write">구매자주소</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="receiverAddr" class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="구산동" />
+			<input 	type="text" name="divyAddr" class="ct_input_g" style="width: 100px; height: 19px" 
+							maxLength="20" value="<%=purchaseVO.getDivyAddr()%>" />
 		</td>
 	</tr>
 	<tr>
@@ -107,8 +109,8 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 		<td width="104" class="ct_write">구매요청사항</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="receiverRequest" 	class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="ㅂㅂ" />
+			<input 	type="text" name="divyRequest" 	class="ct_input_g" style="width: 100px; height: 19px" 
+							maxLength="20" value="<%=purchaseVO.getDivyRequest() %>" />
 		</td>
 	</tr>
 	<tr>
