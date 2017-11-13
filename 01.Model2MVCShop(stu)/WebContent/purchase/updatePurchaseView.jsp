@@ -7,20 +7,50 @@
 	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 
 %>
+
 <html>
 <head>
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
+
 
 <title>구매정보 수정</title>
 
-<script type="text/javascript" src="../javascript/calendar.js">
+<link rel="stylesheet" href="/css/admin.css" type="text/css">
+
+<script type="text/javascript">
+
+function fncAddPurchase(){
+	//Form 유효성 검증
+ 	var receiverName = document.detailForm.receiverName.value;
+	var receiverPhone = document.detailForm.receiverPhone.value;
+	var divyAddr = document.detailForm.divyAddr.value;
+	ㅛ
+
+	if(receiverName == null || receiverName.length<1){
+		alert("구매자이름은 반드시 입력하여야 합니다.");
+		return;
+	}
+	if(receiverPhone == null || receiverPhone.length<1){
+		alert("연락처는 반드시 입력하여야 합니다.");
+		return;
+	}
+	if(divyAddr == null || divyAddr.length<1){
+		alert("배송지는 반드시 입력하셔야 합니다.");
+		return;
+	}
+
+	document.detailForm.action='/updatePurchase.do';
+	document.detailForm.submit();
+}
+
+
 </script>
 
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
-
-<form name="updatePurchase" method="post"	action="/updatePurchase.do?tranNo=<%=purchaseVO.getTranNo()%>">
+<form name="detailForm"  method="post" >
+<!-- <form name="updatePurchase" method="post"	action="/updatePurchase.do?tranNo=<%=purchaseVO.getTranNo()%>"> -->
+<input type="hidden" name="tranNo" value="<%=purchaseVO.getTranNo()%>">
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
@@ -49,7 +79,7 @@
 		<td width="104" class="ct_write">구매자아이디</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01"><%=purchaseVO.getBuyer().getUserId() %></td>
-		<input type="hidden" name="buyerId" value="">
+		
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -72,8 +102,8 @@
 		<td width="104" class="ct_write">구매자이름</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="receiverName" 	class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getReceiverName() %>" />
+			<input 	type="text" name="receiverName" value="<%=purchaseVO.getReceiverName() %>"	
+			class="ct_input_g" style="width: 100px; height: 19px" maxLength="20"  />
 		</td>
 	</tr>
 	<tr>
@@ -83,8 +113,8 @@
 		<td width="104" class="ct_write">구매자 연락처</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="receiverPhone" class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getReceiverPhone() %>" />
+			<input 	type="text" name="receiverPhone" value="<%=purchaseVO.getReceiverPhone() %>"
+			class="ct_input_g" style="width: 100px; height: 19px" maxLength="20"  />
 		</td>
 	</tr>
 
@@ -95,8 +125,8 @@
 		<td width="104" class="ct_write">구매자주소</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="receiverAddr" class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getDivyAddr() %>" />
+			<input 	type="text" name="receiverAddr" value="<%=purchaseVO.getDivyAddr() %>"
+			class="ct_input_g" style="width: 100px; height: 19px" maxLength="20"  />
 		</td>
 	</tr>
 	<tr>
@@ -117,8 +147,8 @@
 		<td width="104" class="ct_write">배송희망일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td width="200" class="ct_write01">
-			<input type="text" readonly="readonly" name="divyDate" class="ct_input_g" 
-						style="width: 100px; height: 19px" maxLength="20"/>
+			<input type="text" readonly="readonly" name="divyDate" value="<%=purchaseVO.getDivyDate() %>"
+			class="ct_input_g" style="width: 100px; height: 19px" maxLength="20"/>
 				<img 	src="../images/ct_icon_date.gif" width="15" height="15"	
 							onclick="show_calendar('document.updatePurchase.divyDate', document.updatePurchase.divyDate.value)"/>
 		</td>
@@ -138,7 +168,8 @@
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
-					<input type="submit" value="수정"/>
+					<a href="javascript:fncAddPurchase();">수정</a>
+					<!--  input type="submit" value="수정"/-->
 				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
@@ -158,6 +189,7 @@
 		</td>
 	</tr>
 </table>
+
 </form>
 
 </body>
