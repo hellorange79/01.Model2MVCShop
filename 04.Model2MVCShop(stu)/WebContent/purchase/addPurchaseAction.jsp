@@ -1,12 +1,12 @@
+<%@page import="com.model2.mvc.service.domain.Product"%>
 <%@page import="com.model2.mvc.service.purchase.vo.PurchaseVO"%>
-<%@page import="com.model2.mvc.service.product.vo.ProductVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
 
-	ProductVO productVO=(ProductVO)request.getAttribute("productVO");
+	Product product=(Product)request.getAttribute("product");
 	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 	
 	
@@ -27,7 +27,7 @@
 <table border=1>
 	<tr>
 		<td>물품번호</td>
-		<td><%=productVO.getProdNo() %></td>
+		<td><%=product.getProdNo() %></td>
 		<td></td>
 	</tr>
 	<tr>

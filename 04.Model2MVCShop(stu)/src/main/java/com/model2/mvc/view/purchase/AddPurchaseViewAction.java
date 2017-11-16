@@ -5,10 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.model2.mvc.framework.Action;
+import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.product.impl.ProductServiceImpl;
-import com.model2.mvc.service.product.vo.ProductVO;
 import com.model2.mvc.service.purchase.vo.PurchaseVO;
 import com.model2.mvc.service.user.UserService;
 import com.model2.mvc.service.user.impl.UserServiceImpl;
@@ -31,7 +31,7 @@ public class AddPurchaseViewAction extends Action{
 		
 		//상품번호로 상품정보 가져오기
 		ProductService productservice = new ProductServiceImpl();
-		ProductVO productVO = productservice.getProduct(prodNo);
+		Product product = productservice.getProduct(prodNo);
 		
 		//유저 아이디로 유저정보 가져오기
 		UserService userservice = new UserServiceImpl();
@@ -40,8 +40,8 @@ public class AddPurchaseViewAction extends Action{
 		
 		
 		//request.setAttribute("prodNo", prodNo);
-		request.setAttribute("productVO", productVO);
-		System.out.println(productVO+"<==productVO");
+		request.setAttribute("product", product);
+		System.out.println(product+"<==product");
 		
 		
 		
