@@ -36,7 +36,7 @@ public class PurchaseDAO {
 
 		String sql = "INSERT INTO transaction " + " (tran_no, prod_no, buyer_id, payment_option, "
 				+ " receiver_name, receiver_phone, dlvy_addr," 
-				+ " dlvy_request, dlvy_date, order_date) "
+				+ " dlvy_request, dlvy_date, tran_status_code, order_date) "
 				+ "VALUES(seq_transaction_tran_no.nextval,?," 
 				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'), sysdate)";
 
@@ -54,6 +54,7 @@ public class PurchaseDAO {
 		stmt.setString(6, purchaseVO.getDivyAddr());
 		stmt.setString(7, purchaseVO.getDivyRequest());
 		stmt.setString(8, purchaseVO.getDivyDate());
+		//stmt.setString(9, purchaseVO.getTranCode());
 		// 주문일 sysdate 사용
 		stmt.executeQuery();
 
@@ -255,4 +256,20 @@ public class PurchaseDAO {
 		con.close();
 	}
 
+	public void updateTranCode(PurchaseVO purchaseVO)throws Exception{
+		
+		Connection con=DBUtil.getConnection();
+		System.out.println("TranCode 메소드");
+		
+		String sql="update transaction set TRAN_STATUS_CODE=? where "
+				+ " TRAN_STATUS_CODE=null AND tran_no=?";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }// end of class

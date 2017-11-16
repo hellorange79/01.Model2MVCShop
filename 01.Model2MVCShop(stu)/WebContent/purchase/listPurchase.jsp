@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
 <script type="text/javascript">
-	function fncGetUserList(currentPage) {
+	function fncGetPurchaseList(currentPage) {
 		document.getElementById("currentPage").value = currentPage;
 		document.detailForm.submit();
 	}
@@ -32,7 +32,7 @@
 
 <div style="width: 98%; margin-left: 10px;">
 
-<form name="detailForm" action="/listUser.do" method="post">
+<form name="detailForm" action="/listPurchase.do" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -84,10 +84,7 @@
 		<td></td>
 		<td align="left"><%=vo.getReceiverPhone() %></td>
 		<td></td>
-		<td align="left">현재
-				
-					구매완료
-				상태 입니다.</td>
+		<td align="left"><%=vo.getTranCode() %></td>
 		<td></td>
 		<td align="left">
 			
@@ -107,17 +104,17 @@
 		 <%  if( resultPage.getCurrentPage() <= resultPage.getPageUnit() ){ %>
 					◀ 이전
 			<% }else{ %>
-					<a href="javascript:fncgetUserList('<%=resultPage.getCurrentPage()-1%>')">◀ 이전</a>
+					<a href="javascript:fncGetPurchaseList('<%=resultPage.getCurrentPage()-1%>')">◀ 이전</a>
 			<% } %>
 
 			<%	for(int i=resultPage.getBeginUnitPage();i<= resultPage.getEndUnitPage() ;i++){	%>
-					<a href="javascript:fncgetUserList('<%=i %>');"><%=i %></a>
+					<a href="javascript:fncGetPurchaseList('<%=i %>');"><%=i %></a>
 			<% 	}  %>
 	
 			<% if( resultPage.getEndUnitPage() >= resultPage.getMaxPage() ){ %>
 					이후 ▶
 			<% }else{ %>
-					<a href="javascript:fncgetUserList('<%=resultPage.getEndUnitPage()+1%>')">이후 ▶</a>
+					<a href="javascript:fncGetPurchaseList('<%=resultPage.getEndUnitPage()+1%>')">이후 ▶</a>
 			<% } %>
 	
 			

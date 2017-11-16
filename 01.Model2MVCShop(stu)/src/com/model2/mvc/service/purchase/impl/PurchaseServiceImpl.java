@@ -55,7 +55,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	@Override
 	public void updateTranCode(PurchaseVO purchaseVO) throws Exception {
-		
+		purchaseDAO.updateTranCode(purchaseVO);
 		
 	}
 	

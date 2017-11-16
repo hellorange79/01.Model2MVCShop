@@ -18,9 +18,9 @@ public class ListPurchaseAction extends Action {
 			throws Exception {
 
 		Search search = new Search();
-
+		
 		String buyerId=request.getParameter("buyerId");
-
+		
 		int currentPage = 1;
 		if (request.getParameter("currentPage") != null)
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));

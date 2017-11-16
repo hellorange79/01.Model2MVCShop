@@ -42,7 +42,7 @@ public class AddPurchaseAction extends Action {
 		purchaseVO.setDivyAddr(request.getParameter("receiverAddr"));
 		purchaseVO.setDivyRequest(request.getParameter("receiverRequest"));
 		purchaseVO.setDivyDate(request.getParameter("receiverDate"));
-
+		purchaseVO.setTranCode("1");
 		System.out.println(purchaseVO);
 		// purchase 에 정보 넣기
 		PurchaseService service = new PurchaseServiceImpl();
