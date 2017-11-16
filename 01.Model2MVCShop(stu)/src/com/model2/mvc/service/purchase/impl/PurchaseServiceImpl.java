@@ -48,9 +48,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public void updatePurcahse(PurchaseVO purchaseVO) throws Exception {
+	public void updatePurchase(PurchaseVO purchaseVO) throws Exception {
 		
-		
+		purchaseDAO.updatePurchase(purchaseVO);
 	}
 
 	@Override

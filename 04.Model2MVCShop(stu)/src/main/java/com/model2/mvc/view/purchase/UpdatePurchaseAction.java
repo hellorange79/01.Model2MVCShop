@@ -35,7 +35,7 @@ public class UpdatePurchaseAction extends Action {
 		
 		
 		PurchaseService purchaseService=new PurchaseServiceImpl();
-		purchaseService.updatePurcahse(purchaseVO);
+		purchaseService.updatePurchase(purchaseVO);
 		
 		
 		request.setAttribute("purchaseVO", purchaseVO);

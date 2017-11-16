@@ -165,7 +165,7 @@ public class ProductDAO {
 		Connection con=DBUtil.getConnection();
 		System.out.println("여기는 업데이트 메소드");
 		String sql ="update product set prod_name=?, prod_detail=?, "
-				+ "manufacture_day=?, price=?, image_file=? where prod_no=?";
+				+ "REPLACE(MANUFACTURE_DAY,'-',''), price=?, image_file=? where prod_no=?";
 		
 		PreparedStatement stmt=con.prepareStatement(sql);
 		

@@ -26,7 +26,7 @@ public class UpdatePurchaseAction extends Action {
 		
 		
 		
-		PurchaseVO purchaseVO=
+		PurchaseVO purchaseVO= new PurchaseVO();
 		
 		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));
@@ -39,7 +39,8 @@ public class UpdatePurchaseAction extends Action {
 		
 		
 		PurchaseService purchaseService=new PurchaseServiceImpl();
-		purchaseService.updatePurcahse(purchaseVO);
+		purchaseService.updatePurchase(purchaseVO);
+		
 		
 		
 		request.setAttribute("purchaseVO", purchaseVO);
