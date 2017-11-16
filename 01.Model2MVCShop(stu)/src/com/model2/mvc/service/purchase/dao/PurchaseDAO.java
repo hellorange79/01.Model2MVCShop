@@ -181,7 +181,7 @@ public class PurchaseDAO {
 			purchaseVO.setReceiverName(rs.getString("receiver_name"));
 			purchaseVO.setReceiverPhone(rs.getString("receiver_phone"));
 			list.add(purchaseVO);
-			System.out.println("purchaseVO==>"+purchaseVO);
+			//System.out.println("purchaseVO==>"+purchaseVO);
 		}
 		map.put("list", list);
 		map.put("totalCount", totalCount);
