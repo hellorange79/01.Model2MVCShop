@@ -27,7 +27,7 @@ public class UpdatePurchaseAction extends Action {
 		
 		
 		PurchaseVO purchaseVO= new PurchaseVO();
-		
+		purchaseVO.setTranNo(tranNo);
 		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));
 		purchaseVO.setReceiverPhone(request.getParameter("receiverPhone"));

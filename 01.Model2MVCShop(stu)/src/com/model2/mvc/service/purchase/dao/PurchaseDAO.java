@@ -234,7 +234,8 @@ public class PurchaseDAO {
 		System.out.println("여기는 purchase업데이트 메소드");
 		
 		String sql="update transaction set PAYMENT_OPTION=?, RECEIVER_NAME=?,"
-				+ " RECEIVER_PHONE=?, DLVY_ADDR=?, DLVY_REQUEST=?, DLVY_DATE=? ";
+				+ " RECEIVER_PHONE=?, DLVY_ADDR=?, DLVY_REQUEST=?, DLVY_DATE=? "
+				+ " WHERE tran_no=?";
 		System.out.println("PurchaseDAO Update ==>"+purchaseVO);
 		PreparedStatement stmt= con.prepareStatement(sql);
 		
@@ -246,6 +247,8 @@ public class PurchaseDAO {
 		stmt.setString(4, purchaseVO.getDivyAddr());
 		stmt.setString(5, purchaseVO.getDivyRequest());
 		stmt.setString(6, purchaseVO.getDivyDate());
+		stmt.setInt(7,purchaseVO.getTranNo());
+		
 		stmt.executeUpdate();
 		
 		
