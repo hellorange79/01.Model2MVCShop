@@ -34,7 +34,6 @@ public class AddPurchaseAction extends Action {
 		PurchaseVO purchaseVO = new PurchaseVO();
 		
 		purchaseVO.setBuyer(((User) session.getAttribute("user")));
-		//purchaseVO.setPurchaseProd((ProductVO)request.getAttribute("prodNo"));
 		purchaseVO.setPurchaseProd(productVO);
 		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
 		purchaseVO.setReceiverName(request.getParameter("receiverName"));
@@ -43,6 +42,7 @@ public class AddPurchaseAction extends Action {
 		purchaseVO.setDivyRequest(request.getParameter("receiverRequest"));
 		purchaseVO.setDivyDate(request.getParameter("receiverDate"));
 		purchaseVO.setTranCode("1");
+		
 		System.out.println(purchaseVO);
 		// purchase 에 정보 넣기
 		PurchaseService service = new PurchaseServiceImpl();
@@ -52,6 +52,7 @@ public class AddPurchaseAction extends Action {
 		request.setAttribute("productVO", productVO);
 		request.setAttribute("prodNo", prodNo);
 		request.setAttribute("purchaseVO", purchaseVO);
+		
 		return "forward:/purchase/addPurchaseAction.jsp";
 
 	}

@@ -36,7 +36,7 @@ public class PurchaseDAO {
 
 		String sql = "INSERT INTO transaction " + " (tran_no, prod_no, buyer_id, payment_option, "
 				+ " receiver_name, receiver_phone, dlvy_addr," 
-				+ " dlvy_request, dlvy_date, tran_status_code, order_date) "
+				+ " dlvy_request, dlvy_date, order_date) "
 				+ "VALUES(seq_transaction_tran_no.nextval,?," 
 				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'), sysdate)";
 
@@ -262,7 +262,7 @@ public class PurchaseDAO {
 		System.out.println("TranCode ¸Þ¼Òµå");
 		
 		String sql="update transaction set TRAN_STATUS_CODE=? where "
-				+ " TRAN_STATUS_CODE=null AND tran_no=?";
+				+ " TRAN_STATUS_CODE=null";
 	}
 	
 	
