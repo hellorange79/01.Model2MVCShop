@@ -164,8 +164,17 @@ function fncGetUserList(currentPage) {
 
 					<td align="left">${productVO.regDate}</td>
 					<td></td>
-
-					<td>품절</td>
+					
+					<td> 
+					
+					<c:if test="${productVO.proTranCode =='0'}">판매중</c:if>
+					<c:if test="${productVO.proTranCode =='1' && productVO.userId=='' }">구매완료</c:if>
+					<c:if test="${productVO.proTranCode =='2' }">배송중</c:if>
+					<c:if test="${productVO.proTranCode =='3' }">배송완료</c:if>
+					
+					
+					</td>
+					
 				</tr>
 				
 				</c:forEach>

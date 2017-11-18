@@ -75,7 +75,9 @@ public class ProductDAO {
 		
 		Connection con = DBUtil.getConnection();
 
-		String sql = "select prod_no, prod_name, price, reg_date from product";
+		String sql = "select p.prod_no, p.prod_name, p.price, p.reg_date, t.tran_status_code "
+				+ " from product p, transaction t"
+				+ " where p.prod_no=t.prod_no";
 
 		if (search.getSearchCondition() != null) {
 			if (search.getSearchCondition().equals("0") && !search.getSearchKeyword().equals("")) {
@@ -107,7 +109,7 @@ public class ProductDAO {
 				vo.setProdName(rs.getString("PROD_NAME"));// 상품명
 				vo.setPrice(rs.getInt("PRICE"));// 가격
 				vo.setRegDate(rs.getDate("REG_DATE"));// 등록일
-				vo.setProTranCode(rs.getString("prod_name"));
+				vo.setProTranCode(rs.getString("tran_status_code"));//상품상태코드
 				list.add(vo);
 				
 			}

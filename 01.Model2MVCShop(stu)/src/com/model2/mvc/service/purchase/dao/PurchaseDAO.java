@@ -36,9 +36,10 @@ public class PurchaseDAO {
 
 		String sql = "INSERT INTO transaction " + " (tran_no, prod_no, buyer_id, payment_option, "
 				+ " receiver_name, receiver_phone, dlvy_addr," 
-				+ " dlvy_request, dlvy_date, order_date) "
+				+ " dlvy_request, dlvy_date, "
+				+ " Tran_status_code, order_date) "
 				+ "VALUES(seq_transaction_tran_no.nextval,?," 
-				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'), sysdate)";
+				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'),?,sysdate)";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		//System.out.println("PurchaseDAO ::" + sql);
@@ -54,7 +55,7 @@ public class PurchaseDAO {
 		stmt.setString(6, purchaseVO.getDivyAddr());
 		stmt.setString(7, purchaseVO.getDivyRequest());
 		stmt.setString(8, purchaseVO.getDivyDate());
-		//stmt.setString(9, purchaseVO.getTranCode());
+		stmt.setString(9, purchaseVO.getTranCode());
 		// 주문일 sysdate 사용
 		stmt.executeQuery();
 
@@ -154,15 +155,17 @@ public class PurchaseDAO {
 		Connection con = DBUtil.getConnection();
 		
 		
-		String sql="select  tran_no, prod_no, buyer_id, receiver_name, receiver_phone  from transaction ";
+		String sql="select  tran_no, prod_no, buyer_id, receiver_name, receiver_phone  from transaction where buyer_id = '"+buyerId+"'";
 		
-		
+		System.out.println("buyerId:::::"+buyerId);
 		//전체 게시물수 
 		int totalCount= this.getTotalCount(sql);
-		
+		System.out.println("buyerId22:::::"+buyerId);
 		//현재 페이지만 게시물 받도록 쿼리 다시
 		sql=makeCurrentPageSql(sql,search);
+		
 		PreparedStatement stmt=con.prepareStatement(sql);
+				
 		ResultSet rs = stmt.executeQuery();
 		System.out.println("나는 서치==> "+search);
 		
@@ -262,7 +265,7 @@ public class PurchaseDAO {
 		System.out.println("TranCode 메소드");
 		
 		String sql="update transaction set TRAN_STATUS_CODE=? where "
-				+ " TRAN_STATUS_CODE=null";
+				+ " TRAN_STATUS_CODE=?";
 	}
 	
 	
