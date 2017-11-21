@@ -153,11 +153,11 @@ function fncGetUserList(currentPage) {
 					<td></td>
 					<td align="left">
 					<c:if test="${param.menu eq 'manage'}" >
-					<a href="/updateProductView.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a></td>
+					<a href="/updateProductView.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a>
 					</c:if>
 					<c:if test="${param.menu eq 'search'}">
-					<a href="/getProduct.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a></td>
-					</c:if>
+					<a href="/getProduct.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a></c:if></td>
+					
 					<td></td>
 					<td align="left">${productVO.price}</td>
 					<td></td>
@@ -167,10 +167,12 @@ function fncGetUserList(currentPage) {
 					
 					<td> 
 					
-					<c:if test="${productVO.proTranCode =='0'}">판매중</c:if>
-					<c:if test="${productVO.proTranCode =='1' && productVO.userId=='' }">구매완료</c:if>
-					<c:if test="${productVO.proTranCode =='2' }">배송중</c:if>
-					<c:if test="${productVO.proTranCode =='3' }">배송완료</c:if>
+					<c:if test="${productVO.proTranCode.trim() == null && param.menu =='search'}">판매중</c:if>
+					<c:if test="${productVO.proTranCode.trim() == null && param.menu =='manage'}">판매중
+					<a href="/updatePurchase.do">&nbsp;배송하기</a></c:if>
+					<c:if test="${productVO.proTranCode.trim() =='2' && param.menu ==''}">배송중</c:if>
+					<c:if test="${productVO.proTranCode.trim() =='2' }">배송중</c:if>
+					<c:if test="${productVO.proTranCode.trim() =='3' }">배송완료</c:if>
 					
 					
 					</td>

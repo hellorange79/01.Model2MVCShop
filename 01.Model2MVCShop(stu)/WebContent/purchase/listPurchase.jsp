@@ -10,7 +10,7 @@
 
 	List<PurchaseVO> list=(List<PurchaseVO>)request.getAttribute("list");
 	Page resultPage=(Page)request.getAttribute("resultPage");
-	
+	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 	
 %>
 
@@ -84,7 +84,10 @@
 		<td></td>
 		<td align="left"><%=vo.getReceiverPhone() %></td>
 		<td></td>
-		<td align="left"><%=vo.getTranCode() %></td>
+		<td align="left">
+		<%if(vo.getTranCode()=="1"){ %>
+			구매완료
+		<%} %></td>
 		<td></td>
 		<td align="left">
 			
@@ -115,8 +118,8 @@
 					이후 ▶
 			<% }else{ %>
 					<a href="javascript:fncGetPurchaseList('<%=resultPage.getEndUnitPage()+1%>')">이후 ▶</a>
-			<% } %>
-	
+			
+		<%} %>
 			
 		
 		

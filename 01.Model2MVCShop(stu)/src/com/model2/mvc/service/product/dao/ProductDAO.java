@@ -77,7 +77,8 @@ public class ProductDAO {
 
 		String sql = "select p.prod_no, p.prod_name, p.price, p.reg_date, t.tran_status_code "
 				+ " from product p, transaction t"
-				+ " where p.prod_no=t.prod_no";
+				+ " where p.prod_no=t.prod_no(+)"
+				+" AND t.tran_status_code is null";
 
 		if (search.getSearchCondition() != null) {
 			if (search.getSearchCondition().equals("0") && !search.getSearchKeyword().equals("")) {

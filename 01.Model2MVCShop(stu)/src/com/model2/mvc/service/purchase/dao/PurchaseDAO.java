@@ -155,7 +155,8 @@ public class PurchaseDAO {
 		Connection con = DBUtil.getConnection();
 		
 		
-		String sql="select  tran_no, prod_no, buyer_id, receiver_name, receiver_phone  from transaction where buyer_id = '"+buyerId+"'";
+		String sql="select  tran_no, prod_no, buyer_id, receiver_name, receiver_phone, tran_status_code "
+				+ " from transaction where buyer_id = '"+buyerId+"'";
 		
 		System.out.println("buyerId:::::"+buyerId);
 		//전체 게시물수 
@@ -177,6 +178,7 @@ public class PurchaseDAO {
 		
 		
 		while(rs.next()) {
+			
 			PurchaseVO purchaseVO= new PurchaseVO();
 			
 			purchaseVO.setTranNo(rs.getInt("tran_No"));
@@ -184,6 +186,7 @@ public class PurchaseDAO {
 			purchaseVO.setBuyer(userservice.getUser(rs.getString("buyer_Id")));
 			purchaseVO.setReceiverName(rs.getString("receiver_name"));
 			purchaseVO.setReceiverPhone(rs.getString("receiver_phone"));
+			purchaseVO.setTranCode(rs.getString("tran_status_code"));
 			list.add(purchaseVO);
 			//System.out.println("purchaseVO==>"+purchaseVO);
 		}
