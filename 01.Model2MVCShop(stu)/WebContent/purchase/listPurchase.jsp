@@ -85,7 +85,7 @@
 		<td align="left"><%=vo.getReceiverPhone() %></td>
 		<td></td>
 		<td align="left">
-		<%if(vo.getTranCode()=="1"){ %>
+		<%if(vo.getTranCode().trim().equals("1")){ %>
 			구매완료
 		<%} %></td>
 		<td></td>
