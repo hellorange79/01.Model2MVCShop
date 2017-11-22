@@ -31,6 +31,7 @@ public class UpdatePurchaseAction extends Action {
 		purchaseVO.setDivyRequest(request.getParameter("divyRequest"));
 		purchaseVO.setDivyDate(request.getParameter("divyDate"));
 		
+		
 		System.out.println("updatePurchase :::::::::::"+purchaseVO );
 		
 		

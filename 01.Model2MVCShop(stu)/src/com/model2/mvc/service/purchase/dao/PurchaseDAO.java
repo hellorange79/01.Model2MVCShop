@@ -263,12 +263,22 @@ public class PurchaseDAO {
 	}
 
 	public void updateTranCode(PurchaseVO purchaseVO)throws Exception{
-		
+
 		Connection con=DBUtil.getConnection();
 		System.out.println("TranCode ¸Þ¼Òµå");
 		
-		String sql="update transaction set TRAN_STATUS_CODE=? where "
-				+ " TRAN_STATUS_CODE=?";
+		String sql="update transaction set TRAN_STATUS_CODE = 2 "
+				+ "WHERE TRAN_STATUS_CODE IS NULL";
+		
+		System.out.println("PurchaseDAO TranCode ==>"+purchaseVO);
+		PreparedStatement stmt= con.prepareStatement(sql);
+		
+		stmt.setString(1, purchaseVO.getTranCode());
+		
+		stmt.executeQuery();
+		
+		con.close();
+		
 	}
 	
 	
