@@ -55,7 +55,9 @@ function fncGetUserList(currentPage) {
 						style="padding-left: 10px;">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td width="93%" class="ct_ttl01">상품 관리</td>
+								<td width="93%" class="ct_ttl01">
+								<c:if test="${param.menu eq 'manage'}" > 상품관리조회</td></c:if>
+								<c:if test="${param.menu eq 'search'}"> 상품목록조회 </td></c:if>
 							</tr>
 						</table>
 					</td>
@@ -151,19 +153,37 @@ function fncGetUserList(currentPage) {
 					<td></td>
 					<td align="left">
 					<c:if test="${param.menu eq 'manage'}" >
-					<a href="/updateProductView.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a></td>
+					<a href="/updateProductView.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a>
 					</c:if>
 					<c:if test="${param.menu eq 'search'}">
-					<a href="/getProduct.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a></td>
-					</c:if>
+					<a href="/getProduct.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a></c:if></td>
+					
 					<td></td>
 					<td align="left">${productVO.price}</td>
 					<td></td>
 
 					<td align="left">${productVO.regDate}</td>
 					<td></td>
-
-					<td>품절</td>
+					
+					<td> 
+					
+					<c:if test="${productVO.proTranCode.trim() == null && param.menu =='search'}">판매중</c:if>
+					<c:if test="${productVO.proTranCode.trim() == null && param.menu =='manage'}">판매중</c:if>
+					
+					<c:if test="${productVO.proTranCode.trim() == '1' && user.role =='user'}">재고없음</c:if>
+					<c:if test="${productVO.proTranCode.trim() == '1' && user.role =='admin'}">구매완료
+					
+					<a href="/updateTranCode.do?">&nbsp;배송하기</a></c:if>
+					<c:if test="${productVO.proTranCode.trim() =='2' && param.menu =='manage'}">배송중</c:if>
+					
+					<c:if test="${productVO.proTranCode.trim() =='2' && user.role =='user'}">배송중
+					<a href="/updateTranCode.do?">&nbsp;물건도착</a></c:if>
+					
+					<c:if test="${productVO.proTranCode.trim() =='3' }">배송완료</c:if>
+					
+					
+					</td>
+					
 				</tr>
 				
 				</c:forEach>

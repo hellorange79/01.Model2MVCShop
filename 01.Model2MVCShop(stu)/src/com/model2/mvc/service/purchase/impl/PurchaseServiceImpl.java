@@ -25,14 +25,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public PurchaseVO getPurchase2(int tranNo) throws Exception {
 		
 		
-		return purchaseDAO.getPurcahse(tranNo);
+		return purchaseDAO.findPurcahse2(tranNo);
 	}
 
 	@Override
 	public PurchaseVO getPurchase(int ProdNo) throws Exception {
 		
 		
-		return purchaseDAO.getPurcahse(ProdNo);
+		return purchaseDAO.findPurcahse(ProdNo);
 	}
 
 	@Override
@@ -48,14 +48,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 	}
 
 	@Override
-	public void updatePurcahse(PurchaseVO purchaseVO) throws Exception {
-		
-		
+	public void updatePurchase(PurchaseVO purchaseVO) throws Exception {
+		purchaseDAO.updatePurchase(purchaseVO);
 	}
 
 	@Override
 	public void updateTranCode(PurchaseVO purchaseVO) throws Exception {
-		
+		purchaseDAO.updateTranCode(purchaseVO);
 		
 	}
 	

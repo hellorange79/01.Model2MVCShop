@@ -138,8 +138,8 @@
 							<td width="17" height="23"><img src="/images/ct_btnbg01.gif"
 								width="17" height="23" /></td>
 							<td background="/images/ct_btnbg02.gif" class="ct_btn01"
-								style="padding-top: 3px;"><a
-								href="/addPurchaseView.do?prodNo=${productVO.prodNo}">구매</a></td>
+								style="padding-top: 3px;">
+								<a href="/addPurchaseView.do?prodNo=${productVO.prodNo}">구매</a></td>
 							<%--if(menu.equals("manage")){ --%>
 
 							<td width="17" height="23"><img src="/images/ct_btnbg01.gif"

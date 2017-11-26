@@ -9,5 +9,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/com.springsource.org.apache.commons.dbcp-1.2.2.osgi"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/com.springsource.org.apache.commons.logging-1.1.1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/com.springsource.org.apache.commons.pool-1.5.3"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/com.springsource.org.apache.log4j-1.2.15"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jdbc-driver"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mybatis-3.2.1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mybatis-spring-1.2.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spring-framework-4.0.9.RELEASE-dist"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
