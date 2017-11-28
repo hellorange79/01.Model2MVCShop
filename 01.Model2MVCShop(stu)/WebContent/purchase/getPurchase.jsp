@@ -19,7 +19,7 @@
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="detailForm" action="/getPurchase.do?" method="post">
+<form name="detailForm" action="/getPurchase.do?tran_no=<%=purchaseVO.getTranNo() %>" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>

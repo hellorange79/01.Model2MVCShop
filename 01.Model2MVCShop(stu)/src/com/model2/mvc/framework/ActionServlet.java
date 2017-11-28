@@ -43,7 +43,7 @@ public class ActionServlet extends HttpServlet {
 				HttpUtil.redirect(response, result);
 			
 		}catch(Exception ex){
-			System.out.println("서비스메소드");
+			System.out.println("ActionServlet Service 메소드");
 			ex.printStackTrace();
 		}
 	}

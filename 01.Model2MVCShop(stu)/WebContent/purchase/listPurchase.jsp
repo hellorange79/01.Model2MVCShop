@@ -1,19 +1,20 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=euc-kr" %>
+<%-- 
 <%@page import="com.model2.mvc.common.Page"%>
 <%@page import="java.util.List"%>
 <%@page import="com.model2.mvc.service.domain.User"%>
 <%@page import="com.model2.mvc.service.purchase.vo.PurchaseVO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
+ --%>
+<%-- <%
 
 
 	List<PurchaseVO> list=(List<PurchaseVO>)request.getAttribute("list");
 	Page resultPage=(Page)request.getAttribute("resultPage");
-	
+	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 	
 %>
-
+ --%>
 <html>
 <head>
 <title>구매 목록조회</title>
@@ -21,7 +22,7 @@
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
 <script type="text/javascript">
-	function fncGetUserList(currentPage) {
+	function fncGetPurchaseList(currentPage) {
 		document.getElementById("currentPage").value = currentPage;
 		document.detailForm.submit();
 	}
@@ -32,7 +33,7 @@
 
 <div style="width: 98%; margin-left: 10px;">
 
-<form name="detailForm" action="/listUser.do" method="post">
+<form name="detailForm" action="/listPurchase.do" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -50,7 +51,7 @@
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
 	<tr>
-		<td colspan="11">전체 <%=resultPage.getTotalCount() %> 건수, 현재 <%=resultPage.getCurrentPage() %> 페이지</td>
+		<td colspan="11">전체${resultPage.totalCount } 건수, 현재 ${resultPage.getCurrentPage()}페이지</td>
 	</tr>
 	<tr>
 		<td class="ct_list_b" width="100">No</td>
@@ -68,7 +69,7 @@
 	<tr>
 		<td colspan="11" bgcolor="808285" height="1"></td>
 	</tr>
-	<% int no = list.size();
+	<%-- <% int no = list.size();
 					for (int i = 0; i < list.size(); i++) {
 						PurchaseVO vo = (PurchaseVO)list.get(i);
 						%>		
@@ -79,50 +80,68 @@
 		<td align="left">
 			<a href="/getUser.do?userId=<%=vo.getBuyer().getUserId()%>"><%=vo.getBuyer().getUserId() %></a>
 		</td>
+	 --%>
+	 	<c:set var="i" value="0"/>
+	 	<c:forEach var="purchaseVO" items="${list}">
+	 	<c:set var="i" value="${i+1}"/>
+	 	<tr class="ct_list_pop">
+	 	<td align="center">
+	 	<a href="/getPurchase.do?tranNo=${purchaseVO.tranNo}">${ i }</a></td>
+	 	<td></td>
+	 	
+		<td align="left">		
+	 	<a href="/getUser.do?tranNo=${purchaseVO.buyer.userId}">${purchaseVO.getBuyer().getUserId()}</a>
+	 	
+	 	
+	 	<td></td>
+		<td align="left">${purchaseVO.receiverName}</td>
 		<td></td>
-		<td align="left"><%=vo.getReceiverName() %></td>
-		<td></td>
-		<td align="left"><%=vo.getReceiverPhone() %></td>
-		<td></td>
-		<td align="left">현재
-				
-					구매완료
-				상태 입니다.</td>
+		
+		<td align="left">${purchaseVO.receiverPhone}</td>
 		<td></td>
 		<td align="left">
-			
+		<c:if test="${purchaseVO.tranCode.trim() == '1'}">구매완료</c:if>
+		<c:if test="${purchaseVO.tranCode.trim() == '2'}">배송중</c:if>
+		<c:if test="${purchaseVO.tranCode.trim() == '3'}">배송완료</c:if>	
+		</td>
+		<td></td>
+		<td align="left">
+		<c:if test="${purchaseVO.tranCode.trim() == '2'}">
+		<a href="/updateTranCode.do?tranCode=3&tranNo=${purchaseVO.tranNo}">&nbsp;물건도착</a>
+		</c:if>	
 		</td>
 	</tr>
+	</c:forEach>
 	<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
 	</tr>
 	
-	<%} %>
+
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px;">
 	<tr>
 		<td align="center">
 		<input type="hidden" id="currentPage" name="currentPage" value=""/>
-		 <%  if( resultPage.getCurrentPage() <= resultPage.getPageUnit() ){ %>
+		<%--  <%  if( resultPage.getCurrentPage() <= resultPage.getPageUnit() ){ %>
 					◀ 이전
 			<% }else{ %>
-					<a href="javascript:fncgetUserList('<%=resultPage.getCurrentPage()-1%>')">◀ 이전</a>
+					<a href="javascript:fncGetPurchaseList('<%=resultPage.getCurrentPage()-1%>')">◀ 이전</a>
 			<% } %>
 
 			<%	for(int i=resultPage.getBeginUnitPage();i<= resultPage.getEndUnitPage() ;i++){	%>
-					<a href="javascript:fncgetUserList('<%=i %>');"><%=i %></a>
+					<a href="javascript:fncGetPurchaseList('<%=i %>');"><%=i %></a>
 			<% 	}  %>
 	
 			<% if( resultPage.getEndUnitPage() >= resultPage.getMaxPage() ){ %>
 					이후 ▶
 			<% }else{ %>
-					<a href="javascript:fncgetUserList('<%=resultPage.getEndUnitPage()+1%>')">이후 ▶</a>
-			<% } %>
-	
+					<a href="javascript:fncGetPurchaseList('<%=resultPage.getEndUnitPage()+1%>')">이후 ▶</a>
 			
+		<%} %>
+ --%>			
 		
-		
+		<jsp:include page="../common/pageNavigator.jsp"/>
 		</td>
 	</tr>
 </table>

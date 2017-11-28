@@ -36,9 +36,10 @@ public class PurchaseDAO {
 
 		String sql = "INSERT INTO transaction " + " (tran_no, prod_no, buyer_id, payment_option, "
 				+ " receiver_name, receiver_phone, dlvy_addr," 
-				+ " dlvy_request, dlvy_date, order_date) "
+				+ " dlvy_request, dlvy_date, "
+				+ " Tran_status_code, order_date) "
 				+ "VALUES(seq_transaction_tran_no.nextval,?," 
-				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'), sysdate)";
+				+ " ?,?,?,?,?,?,TO_DATE(?,'YYYY/MM/DD'),?,sysdate)";
 
 		PreparedStatement stmt = con.prepareStatement(sql);
 		//System.out.println("PurchaseDAO ::" + sql);
@@ -54,6 +55,7 @@ public class PurchaseDAO {
 		stmt.setString(6, purchaseVO.getDivyAddr());
 		stmt.setString(7, purchaseVO.getDivyRequest());
 		stmt.setString(8, purchaseVO.getDivyDate());
+		stmt.setString(9, purchaseVO.getTranCode());
 		// 주문일 sysdate 사용
 		stmt.executeQuery();
 
@@ -153,15 +155,18 @@ public class PurchaseDAO {
 		Connection con = DBUtil.getConnection();
 		
 		
-		String sql="select  tran_no, prod_no, buyer_id, receiver_name, receiver_phone  from transaction ";
+		String sql="select  tran_no, prod_no, buyer_id, receiver_name, receiver_phone, tran_status_code "
+				+ " from transaction where buyer_id = '"+buyerId+"'";
 		
-		
+		System.out.println("buyerId:::::"+buyerId);
 		//전체 게시물수 
 		int totalCount= this.getTotalCount(sql);
-		
+		System.out.println("buyerId22:::::"+buyerId);
 		//현재 페이지만 게시물 받도록 쿼리 다시
 		sql=makeCurrentPageSql(sql,search);
+		
 		PreparedStatement stmt=con.prepareStatement(sql);
+				
 		ResultSet rs = stmt.executeQuery();
 		System.out.println("나는 서치==> "+search);
 		
@@ -173,6 +178,7 @@ public class PurchaseDAO {
 		
 		
 		while(rs.next()) {
+			
 			PurchaseVO purchaseVO= new PurchaseVO();
 			
 			purchaseVO.setTranNo(rs.getInt("tran_No"));
@@ -180,8 +186,9 @@ public class PurchaseDAO {
 			purchaseVO.setBuyer(userservice.getUser(rs.getString("buyer_Id")));
 			purchaseVO.setReceiverName(rs.getString("receiver_name"));
 			purchaseVO.setReceiverPhone(rs.getString("receiver_phone"));
+			purchaseVO.setTranCode(rs.getString("tran_status_code"));
 			list.add(purchaseVO);
-			System.out.println("purchaseVO==>"+purchaseVO);
+			//System.out.println("purchaseVO==>"+purchaseVO);
 		}
 		map.put("list", list);
 		map.put("totalCount", totalCount);
@@ -233,23 +240,49 @@ public class PurchaseDAO {
 		Connection con=DBUtil.getConnection();
 		System.out.println("여기는 purchase업데이트 메소드");
 		
-		String sql="update transaction set BUYER_ID=?, PAYMENT_OPTION=?, RECEIVER_NAME=?,"
-				+ " RECEIVER_PHONE=?, DLVY_ADDR=?, DLVY_REQUEST=?, DLVY_DATE=? ";
+		String sql="update transaction set PAYMENT_OPTION=?, RECEIVER_NAME=?,"
+				+ " RECEIVER_PHONE=?, DLVY_ADDR=?, DLVY_REQUEST=?, DLVY_DATE=? "
+				+ " WHERE tran_no=?";
 		System.out.println("PurchaseDAO Update ==>"+purchaseVO);
 		PreparedStatement stmt= con.prepareStatement(sql);
 		
 		
-		stmt.setString(1, purchaseVO.getBuyer().getUserId());
-		stmt.setString(2, purchaseVO.getPaymentOption());
-		stmt.setString(3, purchaseVO.getReceiverName());
-		stmt.setString(4, purchaseVO.getReceiverPhone());
-		stmt.setString(5, purchaseVO.getDivyAddr());
-		stmt.setString(6, purchaseVO.getDivyRequest());
-		stmt.setString(7, purchaseVO.getDivyDate());
+		//stmt.setString(1, purchaseVO.getBuyer().getUserId());
+		stmt.setString(1, purchaseVO.getPaymentOption());
+		stmt.setString(2, purchaseVO.getReceiverName());
+		stmt.setString(3, purchaseVO.getReceiverPhone());
+		stmt.setString(4, purchaseVO.getDivyAddr());
+		stmt.setString(5, purchaseVO.getDivyRequest());
+		stmt.setString(6, purchaseVO.getDivyDate());
+		stmt.setInt(7,purchaseVO.getTranNo());
+		
 		stmt.executeUpdate();
 		
 		
 		con.close();
 	}
 
+	public void updateTranCode(PurchaseVO purchaseVO)throws Exception{
+
+		Connection con=DBUtil.getConnection();
+		System.out.println("TranCode 메소드");
+		
+		String sql="update transaction set tran_status_code=?"
+				+ "WHERE prod_no=?";
+				
+		
+		System.out.println("PurchaseDAO TranCode ==>"+purchaseVO);
+		PreparedStatement stmt= con.prepareStatement(sql);
+		
+		stmt.setString(1, purchaseVO.getTranCode());
+		stmt.setInt(2, purchaseVO.getPurchaseProd().getProdNo());
+		
+		stmt.executeUpdate();
+		
+		con.close();
+		
+	}
+	
+
+	
 }// end of class
