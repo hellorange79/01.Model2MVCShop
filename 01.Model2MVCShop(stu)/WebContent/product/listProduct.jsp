@@ -172,13 +172,11 @@ function fncGetUserList(currentPage) {
 					
 					<c:if test="${productVO.proTranCode.trim() == '1' && user.role =='user'}">재고없음</c:if>
 					<c:if test="${productVO.proTranCode.trim() == '1' && user.role =='admin'}">구매완료
-					<a href="/updateTranCode.do?tranCode='2'">&nbsp;배송하기</a></c:if>
+					<a href="/updateTranCodeByProd.do?tranCode=2">&nbsp;배송하기</a></c:if>
 					
-					<c:if test="${productVO.proTranCode.trim() =='2' && param.menu =='manage'}">배송중</c:if>
-					<c:if test="${productVO.proTranCode.trim() =='2' && param.menu =='search'}">재고없음</c:if>
-					<c:if test="${productVO.proTranCode.trim() =='2' && user.role =='user'}">배송중
-					<a href="/updateTranCode.do?">&nbsp;물건도착</a></c:if>
-					
+					<c:if test="${productVO.proTranCode.trim() =='2' && user.role =='admin'}">배송중</c:if>
+					<c:if test="${productVO.proTranCode.trim() =='2' && user.role =='user'}">재고없음</c:if>
+									
 					<c:if test="${productVO.proTranCode.trim() =='3' }">배송완료</c:if>
 					
 					

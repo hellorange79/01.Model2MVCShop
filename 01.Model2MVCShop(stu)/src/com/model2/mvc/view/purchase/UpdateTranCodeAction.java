@@ -15,12 +15,13 @@ public class UpdateTranCodeAction extends Action{
 		
 		System.out.println(":::UpdateTranCodeAction ::");
 		
-		int tranNo =Integer.parseInt(request.getParameter("tranNo"));
+		
 	
 		PurchaseService purchaseService = new PurchaseServiceImpl();
+		int tranNo =Integer.parseInt(request.getParameter("tranNo"));
 		PurchaseVO purchaseVO= purchaseService.getPurchase2(tranNo);
 		
-		purchaseVO.setTranCode("2");
+		//purchaseVO.setTranCode(request.getParameter("tranCode"));
 		purchaseService.updateTranCode(purchaseVO);
 
 		request.setAttribute("purchaseVO", purchaseVO);
