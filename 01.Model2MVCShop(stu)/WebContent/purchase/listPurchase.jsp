@@ -101,12 +101,14 @@
 		<td></td>
 		<td align="left">
 		<c:if test="${purchaseVO.tranCode.trim() == '1'}">구매완료</c:if>
-		<c:if test="${purchaseVO.tranCode.trim() == '2'}">배송중
-		</c:if>	
+		<c:if test="${purchaseVO.tranCode.trim() == '2'}">배송중</c:if>
+		<c:if test="${purchaseVO.tranCode.trim() == '3'}">배송완료</c:if>	
 		</td>
 		<td></td>
 		<td align="left">
-		<a href="/updateTranCode.do?">&nbsp;물건도착</a>	
+		<c:if test="${purchaseVO.tranCode.trim() == '2'}">
+		<a href="/updateTranCode.do?tranCode=3&tranNo=${purchaseVO.tranNo}">&nbsp;물건도착</a>
+		</c:if>	
 		</td>
 	</tr>
 	</c:forEach>

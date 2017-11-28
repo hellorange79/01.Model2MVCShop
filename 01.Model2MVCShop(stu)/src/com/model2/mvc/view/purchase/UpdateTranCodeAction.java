@@ -14,20 +14,21 @@ public class UpdateTranCodeAction extends Action {
 
 		System.out.println(":::UpdateTranCodeAction ::");
 
-		String tranCode = request.getParameter("tranCode");
-
-		PurchaseVO purchaseVO = new PurchaseVO();
-		purchaseVO.setTranCode("tranCode");
-
+		int tranNo= Integer.parseInt(request.getParameter("tranNo"));
+		String tranCode =request.getParameter("tranCode");
+		
+		
 		PurchaseService purchaseService = new PurchaseServiceImpl();
+		PurchaseVO purchaseVO=purchaseService.getPurchase2(tranNo);
+		purchaseVO.setTranCode(tranCode);
+		System.out.println("tranCode ====>> "+tranCode);
+		
+		
 		purchaseService.updateTranCode(purchaseVO);
-
-		// purchaseVO.setTranCode(request.getParameter("tranCode"));
-		purchaseService.updateTranCode(purchaseVO);
-
+		
 		request.setAttribute("purchaseVO", purchaseVO);
 
-		return "redirect:/listProduct.do?";
+		return "redirect:/listPurchase.do?";
 	}
 
 }
