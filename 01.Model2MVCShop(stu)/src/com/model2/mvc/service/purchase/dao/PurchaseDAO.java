@@ -268,13 +268,14 @@ public class PurchaseDAO {
 		System.out.println("TranCode ¸Þ¼Òµå");
 		
 		String sql="update transaction set tran_status_code=?"
-				+ "WHERE tran_no=?";
+				+ "WHERE prod_no=?";
 				
 		
 		System.out.println("PurchaseDAO TranCode ==>"+purchaseVO);
 		PreparedStatement stmt= con.prepareStatement(sql);
 		
 		stmt.setString(1, purchaseVO.getTranCode());
+		stmt.setInt(2, purchaseVO.getPurchaseProd().getProdNo());
 		
 		stmt.executeUpdate();
 		

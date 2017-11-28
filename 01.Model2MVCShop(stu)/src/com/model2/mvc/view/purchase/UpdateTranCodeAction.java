@@ -8,20 +8,21 @@ import com.model2.mvc.service.purchase.PurchaseService;
 import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
 import com.model2.mvc.service.purchase.vo.PurchaseVO;
 
-public class UpdateTranCodeAction extends Action{
+public class UpdateTranCodeAction extends Action {
 
-	public String execute(HttpServletRequest request, HttpServletResponse response) 
-			throws Exception {
-		
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		System.out.println(":::UpdateTranCodeAction ::");
-		
-		
-	
+
+		String tranCode = request.getParameter("tranCode");
+
+		PurchaseVO purchaseVO = new PurchaseVO();
+		purchaseVO.setTranCode("tranCode");
+
 		PurchaseService purchaseService = new PurchaseServiceImpl();
-		int tranNo =Integer.parseInt(request.getParameter("tranNo"));
-		PurchaseVO purchaseVO= purchaseService.getPurchase2(tranNo);
-		
-		//purchaseVO.setTranCode(request.getParameter("tranCode"));
+		purchaseService.updateTranCode(purchaseVO);
+
+		// purchaseVO.setTranCode(request.getParameter("tranCode"));
 		purchaseService.updateTranCode(purchaseVO);
 
 		request.setAttribute("purchaseVO", purchaseVO);

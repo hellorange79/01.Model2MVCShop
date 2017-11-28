@@ -152,6 +152,9 @@ function fncGetUserList(currentPage) {
 					<td align="center">${ i }</td>
 					<td></td>
 					<td align="left">
+					<c:if test="${param.menu eq 'null'}" >
+					<a href="/getProduct.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a>
+					</c:if>
 					<c:if test="${param.menu eq 'manage'}" >
 					<a href="/updateProductView.do?menu=${param.menu}&prodNo=${productVO.prodNo}">${productVO.prodName}</a>
 					</c:if>
@@ -172,7 +175,7 @@ function fncGetUserList(currentPage) {
 					
 					<c:if test="${productVO.proTranCode.trim() == '1' && user.role =='user'}">재고없음</c:if>
 					<c:if test="${productVO.proTranCode.trim() == '1' && user.role =='admin'}">구매완료
-					<a href="/updateTranCodeByProd.do?tranCode=2">&nbsp;배송하기</a></c:if>
+					<a href="/updateTranCodeByProd.do?proTranCode=2&prodNo=${productVO.prodNo}">&nbsp;배송하기</a></c:if>
 					
 					<c:if test="${productVO.proTranCode.trim() =='2' && user.role =='admin'}">배송중</c:if>
 					<c:if test="${productVO.proTranCode.trim() =='2' && user.role =='user'}">재고없음</c:if>

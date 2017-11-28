@@ -18,21 +18,23 @@ public class UpdateTranCodeByProdAction extends Action {
 		
 		System.out.println(":: UpdateTranCodeByProdAcction :: ");
 		
+		int prodNo = Integer.parseInt(request.getParameter("prodNo"));
 		String proTranCode = request.getParameter("proTranCode");
 		
-		ProductService productservice = new ProductServiceImpl();
-		
-		ProductVO productVO= new ProductVO();
-		productVO.setProTranCode("2");
-		System.out.println("proTranCode ===>"+proTranCode);
-		
-		String tranCode= request.getParameter("tranCode"); 
+		ProductService service = new ProductServiceImpl();
+		ProductVO productVO = service.getProduct(prodNo);
+		productVO.setProTranCode(proTranCode);
+		System.out.println("proTranCode====> "+proTranCode);
 		
 		PurchaseService purchaseService = new PurchaseServiceImpl();
-		PurchaseVO purchaseVO = new PurchaseVO();
-		purchaseVO.setTranCode("2");
+		PurchaseVO purchaseVO=purchaseService.getPurchase(prodNo);
+		purchaseVO.setTranCode(proTranCode);
 		
-		//proTranCode update
+		purchaseService.updateTranCode(purchaseVO);
+		
+		request.setAttribute("proTranCode", proTranCode);
+		
+		
 		
 	return "redirect:/listProduct.do?";
 	}
