@@ -22,7 +22,7 @@ public class ProductDAO {
 		Connection con = DBUtil.getConnection();
 
 		String sql = "insert into PRODUCT values(seq_product_prod_no.nextval,?,?,to_date(?, 'YYYY/MM/DD'),?,?,sysdate)";
-
+		System.out.println("::: insertProduct ::: ");
 		PreparedStatement stmt = con.prepareStatement(sql);
 		// stmt.setInt(1, productVO.getProdNo());//상품번호(시퀀스 사용)
 		stmt.setString(1, productVO.getProdName());// 상품이름

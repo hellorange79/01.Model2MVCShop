@@ -1,8 +1,8 @@
+<%@ page contentType="text/html; charset=EUC-KR"%>
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <%-- ProductVO productVO =(ProductVO)request.getAttribute("productVO"); --%>
 
 <html>
@@ -90,7 +90,7 @@
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">상품이미지
-		<img src="/images/uploadFiles/../../images/empty.GIF">
+		<img src="/images/uploadFiles/../../images/">
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">

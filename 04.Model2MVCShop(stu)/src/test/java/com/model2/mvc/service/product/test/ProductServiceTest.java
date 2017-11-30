@@ -52,7 +52,7 @@ public class ProductServiceTest {
 		System.out.println(product);
 		
 	}
-	//@Test
+	@Test
 	
 	public void testGetProduct() throws Exception{
 		
@@ -107,7 +107,7 @@ public class ProductServiceTest {
 	 	System.out.println(totalCount);
 	}
 	
-	@Test
+	//@Test
 	public void testGetUserListByProdNo() throws Exception{
 		 
 	 	Search search = new Search();
