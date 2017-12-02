@@ -1,66 +1,81 @@
 package com.model2.mvc.service.purchase.impl;
 
 import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
 import com.model2.mvc.common.Search;
+import com.model2.mvc.service.purchase.PurchaseDao;
 import com.model2.mvc.service.purchase.PurchaseService;
-import com.model2.mvc.service.purchase.dao.PurchaseDAO;
-import com.model2.mvc.service.purchase.vo.PurchaseVO;
+import com.model2.mvc.service.purchase.dao.*;
+import com.model2.mvc.service.domain.Purchase;;
 
+@Repository("purchaseServiceImpl")
 public class PurchaseServiceImpl implements PurchaseService {
 	
-	private PurchaseDAO purchaseDAO;
+	
+	@Autowired
+	@Qualifier("purchaseDaoImpl")
+	private PurchaseDao purchaseDao;
+	
+	public void setPurchaseDao(PurchaseDao purchaseDao) {
+		this.purchaseDao=purchaseDao;
+	}
+	
 	
 	public PurchaseServiceImpl() {
-		purchaseDAO = new PurchaseDAO();
+		System.out.println(this.getClass());
 	}
-	
-	//구매
-	public void addPurchase(PurchaseVO purchaseVO)throws Exception{
-		purchaseDAO.insertPurchase(purchaseVO);
-		
+
+	// 구매
+	public void addPurchase(Purchase purchase) throws Exception {
+		purchaseDao.insertPurchase(purchase);
+
 	}
 
 	@Override
-	public PurchaseVO getPurchase2(int tranNo) throws Exception {
-		
-		
-		return purchaseDAO.findPurcahse2(tranNo);
+	public Purchase getPurchase2(int tranNo) throws Exception {
+
+		return purchaseDao.findPurchase2(tranNo);
 	}
 
 	@Override
-	public PurchaseVO getPurchase(int ProdNo) throws Exception {
+	public Purchase getPurchase(int prodNo) throws Exception {
+
+		return purchaseDao.findPurchase(prodNo);
 		
-		
-		return purchaseDAO.findPurcahse(ProdNo);
 	}
 
 	@Override
 	public HashMap<String, Object> getPurchaseList(Search search, String buyerId) throws Exception {
+		List<Purchase> list = purchaseDao.getPurchaseList(search, buyerId);
 		
-		return (HashMap<String, Object>)purchaseDAO.getPurchaseList(search, buyerId);
+		int totalCount= purchaseDao.getTotalCount(search);
+		HashMap<String, Object> map= new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("totalCount", new Integer(totalCount));
+		return map;
 	}
 
 	@Override
 	public HashMap<String, Object> getSaleList(Search search) throws Exception {
-		
+
 		return null;
 	}
 
 	@Override
-	public void updatePurchase(PurchaseVO purchaseVO) throws Exception {
-		
-		purchaseDAO.updatePurchase(purchaseVO);
+	public void updatePurchase(Purchase purchase) throws Exception {
+
+		purchaseDao.updatePurchase(purchase);
 	}
 
 	@Override
-	public void updateTranCode(PurchaseVO purchaseVO) throws Exception {
-		
-		
+	public void updateTranCode(Purchase purchase) throws Exception {
+		purchaseDao.updateTranCode(purchase);
 	}
-	
-
-	
-	
 
 }

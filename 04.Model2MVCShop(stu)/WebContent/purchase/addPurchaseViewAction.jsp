@@ -1,21 +1,17 @@
-<%@page import="com.model2.mvc.service.domain.Product"%>
-<%@page import="com.model2.mvc.service.domain.User"%>
-<%@page import="com.model2.mvc.service.purchase.vo.PurchaseVO"%>
-<%@page import="com.model2.mvc.service.product.*"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
+   pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- 
 
 <% 
-	Product product = (Product)request.getAttribute("product"); 
-   
+	ProductVO productVO = (ProductVO)request.getAttribute("productVO"); 
+   	PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 	String userId=((User)session.getAttribute("user")).getUserId();
 	int prodNo= Integer.parseInt(request.getParameter("prodNo"));
 	
 	
 %>
-
+ --%>
 
 <html>
 <head>
@@ -60,7 +56,7 @@ function fncAddPurchase() {
 	</tr>
 </table>
 
-<input type="hidden" name="prodNo" value="<%=prodNo %>" />
+<input type="hidden" name="prodNo" value="${productVO.prodNo}" />
 
 <table width="600" border="0" cellspacing="0" cellpadding="0"	align="center" style="margin-top: 13px;">
 	<tr>
@@ -74,7 +70,7 @@ function fncAddPurchase() {
 		<td class="ct_write01" width="299">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="105"><%=prodNo %></td>
+					<td width="105">${productVO.prodNo}</td>
 				</tr>
 			</table>
 		</td>
@@ -87,7 +83,7 @@ function fncAddPurchase() {
 			상품명 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=product.getProdName() %></td>
+		<td class="ct_write01">${productVO.prodName}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -97,7 +93,7 @@ function fncAddPurchase() {
 			상품상세정보 <img	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=product.getProdDetail() %></td>
+		<td class="ct_write01">${productVO.getProdDetail()}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -105,7 +101,7 @@ function fncAddPurchase() {
 	<tr>
 		<td width="104" class="ct_write">제조일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=product.getManuDate()%></td>
+		<td class="ct_write01">${productVO.getManuDate()}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -113,7 +109,7 @@ function fncAddPurchase() {
 	<tr>
 		<td width="104" class="ct_write">가격</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=product.getPrice() %></td>
+		<td class="ct_write01">${productVO.getPrice()}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -121,7 +117,7 @@ function fncAddPurchase() {
 	<tr>
 		<td width="104" class="ct_write">등록일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=product.getRegDate() %></td>
+		<td class="ct_write01">${productVO.getRegDate()}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -131,7 +127,7 @@ function fncAddPurchase() {
 			구매자아이디 <img 	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=userId %></td>
+		<td class="ct_write01">${user.userId}</td>
 		<input type="hidden" name="userId" value=""/>
 	</tr>
 	<tr>
@@ -139,7 +135,8 @@ function fncAddPurchase() {
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">구매방법</td>
-		<td bgcolor="D6D6D6" width="1"></td>
+		<td bgcolor="D6D6D6" width="1">
+</td>
 		<td class="ct_write01">
 			<select 	name="paymentOption"		class="ct_input_g" 
 							style="width: 100px; height: 19px" maxLength="20">

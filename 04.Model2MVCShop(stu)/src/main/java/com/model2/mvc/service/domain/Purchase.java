@@ -1,4 +1,4 @@
-package com.model2.mvc.service.purchase.vo;
+package com.model2.mvc.service.domain;
 
 import java.sql.Date;
 
@@ -7,7 +7,7 @@ import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.domain.User;
 
 
-public class PurchaseVO {
+public class Purchase {
 	
 	private User buyer;//User타입의 구매자 정보
 	private String divyAddr;//배송지주소
@@ -21,7 +21,7 @@ public class PurchaseVO {
 	private String tranCode;//구매상태 코드
 	private int tranNo;//구매번호
 	
-	public PurchaseVO(){
+	public Purchase(){
 	}
 	
 	public User getBuyer() {
@@ -93,7 +93,7 @@ public class PurchaseVO {
 	
 	@Override
 	public String toString() {
-		return "PurchaseVO [buyer=" + buyer + ", divyAddr=" + divyAddr
+		return "Purchase [buyer=" + buyer + ", divyAddr=" + divyAddr
 				+ ", divyDate=" + divyDate + ", divyRequest=" + divyRequest
 				+ ", orderDate=" + orderDate + ", paymentOption="
 				+ paymentOption + ", purchaseProd=" + purchaseProd

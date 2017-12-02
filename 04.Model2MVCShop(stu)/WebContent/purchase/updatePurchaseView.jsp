@@ -1,12 +1,12 @@
-<%@page import="com.model2.mvc.service.purchase.vo.PurchaseVO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%
+<%-- <%
 PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 %>
-
+ --%>
 <html>
 <head>
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
@@ -22,7 +22,7 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="updatePurchase" method="post"	action="/updatePurchase.do?tranNo=<%=purchaseVO.getTranNo()%>">
+<form name="updatePurchase" method="post"	action="/updatePurchase.do?tranNo=${purchaseVO.getTranNo()}">
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
@@ -50,8 +50,8 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 	<tr>
 		<td width="104" class="ct_write">구매자아이디</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01"><%=purchaseVO.getBuyer().getUserId() %></td>
-		<input type="hidden" name="buyerId" value="<%=purchaseVO.getBuyer().getUserId()%>">
+		<td class="ct_write01">${purchaseVO.getBuyer().getUserId()}</td>
+		<input type="hidden" name="buyerId" value="${purchaseVO.getBuyer().getUserId()}">
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -76,7 +76,7 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverName" 	class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getReceiverName() %>" />
+							maxLength="20" value="${purchaseVO.getReceiverName()}" />
 		</td>
 	</tr>
 	<tr>
@@ -87,7 +87,7 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="receiverPhone" class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getReceiverPhone() %>" />
+							maxLength="20" value="${purchaseVO.getReceiverPhone()}" />
 		</td>
 	</tr>
 
@@ -99,7 +99,7 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="divyAddr" class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getDivyAddr()%>" />
+							maxLength="20" value="${purchaseVO.getDivyAddr()}" />
 		</td>
 	</tr>
 	<tr>
@@ -110,7 +110,7 @@ PurchaseVO purchaseVO=(PurchaseVO)request.getAttribute("purchaseVO");
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="divyRequest" 	class="ct_input_g" style="width: 100px; height: 19px" 
-							maxLength="20" value="<%=purchaseVO.getDivyRequest() %>" />
+							maxLength="20" value="${purchaseVO.getDivyRequest()}" />
 		</td>
 	</tr>
 	<tr>
