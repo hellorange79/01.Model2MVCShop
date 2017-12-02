@@ -4,10 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model2.mvc.framework.Action;
-
+import com.model2.mvc.service.domain.Purchase;
 import com.model2.mvc.service.purchase.PurchaseService;
 import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
-import com.model2.mvc.service.purchase.vo.PurchaseVO;
+
 
 
 public class UpdatePurchaseAction extends Action {
@@ -21,24 +21,24 @@ public class UpdatePurchaseAction extends Action {
 		
 		
 		
-		PurchaseVO purchaseVO= new PurchaseVO();
+		Purchase purchase= new Purchase();
 		
 		
-		purchaseVO.setPaymentOption(request.getParameter("paymentOption"));
-		purchaseVO.setReceiverName(request.getParameter("receiverName"));
-		purchaseVO.setReceiverPhone(request.getParameter("receiverPhone"));
-		purchaseVO.setDivyAddr(request.getParameter("divyAddr"));
-		purchaseVO.setDivyRequest(request.getParameter("divyRequest"));
-		purchaseVO.setDivyDate(request.getParameter("divyDate"));
+		purchase.setPaymentOption(request.getParameter("paymentOption"));
+		purchase.setReceiverName(request.getParameter("receiverName"));
+		purchase.setReceiverPhone(request.getParameter("receiverPhone"));
+		purchase.setDivyAddr(request.getParameter("divyAddr"));
+		purchase.setDivyRequest(request.getParameter("divyRequest"));
+		purchase.setDivyDate(request.getParameter("divyDate"));
 		
-		System.out.println("updatePurchase :::::::::::"+purchaseVO );
+		System.out.println("updatePurchase :::::::::::"+purchase );
 		
 		
 		PurchaseService purchaseService=new PurchaseServiceImpl();
-		purchaseService.updatePurchase(purchaseVO);
+		purchaseService.updatePurchase(purchase);
 		
 		
-		request.setAttribute("purchaseVO", purchaseVO);
+		request.setAttribute("purchaseVO", purchase);
 		
 		
 		return "redirect:/getPurchase.do?tranNo="+tranNo;
