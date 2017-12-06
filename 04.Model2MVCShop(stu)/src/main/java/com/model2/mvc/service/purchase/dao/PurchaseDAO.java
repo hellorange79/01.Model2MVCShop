@@ -77,7 +77,7 @@ public class PurchaseDAO {
 		ResultSet rs = stmt.executeQuery();
 		
 		ProductService productService = new ProductServiceImpl();
-		Product productVO = productService.getProduct(prodNo);
+		Product product = productService.getProduct(prodNo);
 
 		UserService userservice = new UserServiceImpl();
 		

@@ -2,6 +2,7 @@ package com.model2.mvc.service.purchase.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,27 +46,28 @@ public class PurchaseDaoImpl implements PurchaseDao{
 	}
 
 	@Override
-	public List<Purchase> getPurchaseList(Search search, String buyerId) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("PurchaseMapper.getPurchaseList", search,buyerId);
+	public List<Purchase> getPurchaseList(Search search) throws Exception {
+		
+		return sqlSession.selectList("PurchaseMapper.getPurchaseList", search);
 	}
 
 	@Override
 	public void updatePurchase(Purchase purchase) throws Exception {
-		sqlSession.update("ProductMapper.updatePurchase", purchase);
+		sqlSession.update("PurchaseMapper.updatePurchase", purchase);
 		
 	}
 
 	@Override
 	public void updateTranCode(Purchase purchase) throws Exception {
-		sqlSession.update("ProductMapper.updateTranCode", purchase);
+		sqlSession.update("PurchaseMapper.updateTranCode", purchase);
 		
 		
 	}
 	
 	public int getTotalCount(Search search) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("ProductMapper.getTotalCount", search);
+		return sqlSession.selectOne("PurchaseMapper.getTotalCount",search)	;
+				
 	}
 	
 }

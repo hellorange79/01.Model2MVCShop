@@ -37,7 +37,7 @@ CREATE TABLE product (
 );
 
 CREATE TABLE transaction ( 
-	tran_no 						NUMBER 			NOT NULL,
+	tran_no 						NUMBER 		NOT NULL,
 	prod_no 					NUMBER(16)		NOT NULL REFERENCES product(prod_no),
 	buyer_id 					VARCHAR2(20)	NOT NULL REFERENCES users(user_id),
 	payment_option		 CHAR(3),

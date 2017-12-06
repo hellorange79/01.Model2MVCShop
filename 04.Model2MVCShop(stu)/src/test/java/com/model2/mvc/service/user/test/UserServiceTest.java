@@ -74,7 +74,7 @@ public class UserServiceTest {
 //		user.setAddr("경기도");
 //		user.setEmail("test@test.com");
 		
-		user = userService.getUser("testUserId");
+		user = userService.getUser("user01");
 
 		//==> console 확인
 		System.out.println(user);
@@ -94,8 +94,8 @@ public class UserServiceTest {
 	//@Test
 	 public void testUpdateUser() throws Exception{
 		 
-		User user = userService.getUser("testUserId");
-		Assert.assertNotNull(user);
+		User user = userService.getUser("user01");
+		//Assert.assertNotNull(user);
 		
 		//Assert.assertEquals("testUserName", user.getUserName());
 		//Assert.assertEquals("111-2222-3333", user.getPhone());
@@ -148,7 +148,7 @@ public class UserServiceTest {
 	}
 	
 	 //==>  주석을 풀고 실행하면....
-	 @Test
+	 //@Test
 	 public void testGetUserListAll() throws Exception{
 		 
 	 	Search search = new Search();

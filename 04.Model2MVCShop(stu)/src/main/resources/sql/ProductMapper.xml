@@ -46,8 +46,7 @@
 			<if test="prodName != null">prod_name = #{prodName} ,</if>
 			prod_detail = #{prodDetail},
 			price = #{price} ,
-			image_file =
-			#{fileName}
+			image_file = #{fileName}
 		</set>
 		WHERE prod_no = #{prodNo}
 	</update>

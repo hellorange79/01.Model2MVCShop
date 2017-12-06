@@ -32,7 +32,7 @@ public class ListPurchaseAction extends Action {
 		search.setPageSize(pageSize);
 
 		PurchaseService purchaseService = new PurchaseServiceImpl();
-		HashMap<String, Object> map = purchaseService.getPurchaseList(search, buyerId);
+		HashMap<String, Object> map = purchaseService.getPurchaseList(search);
 
 		Page resultPage = 
 		new Page(currentPage, ((Integer) map.get("totalCount")).intValue(), pageUnit, pageSize);

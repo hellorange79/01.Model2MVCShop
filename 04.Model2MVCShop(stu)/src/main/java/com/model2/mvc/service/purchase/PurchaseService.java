@@ -1,6 +1,7 @@
 package com.model2.mvc.service.purchase;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Purchase;
@@ -14,7 +15,7 @@ public interface PurchaseService {
 	
 	public Purchase getPurchase(int ProdNo) throws Exception;
 	
-	public HashMap<String,Object> getPurchaseList(Search search,String buyerId) throws Exception;
+	public HashMap<String,Object>getPurchaseList(Search search) throws Exception;
 	
 	public HashMap<String,Object> getSaleList(Search search) throws Exception;
 	
