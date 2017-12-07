@@ -1,4 +1,3 @@
-<%@page import="com.model2.mvc.service.product.vo.ProductVO"%>
 <%@page import="javax.lang.model.element.Name"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
